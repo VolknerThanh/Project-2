@@ -34,7 +34,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Methods</title>
+	<title>Danh sách phương thức</title>
 	<meta charset="utf-8">
 	<script src="lib/jquery-3.2.1.min.js"></script>
 	<script src="lib/scripts.php"></script>
@@ -66,12 +66,12 @@
 	</div>
 
 	<div class="fill-information">
-		<h1>Add information</h1>
+		<h1>Thêm Thông Tin</h1>
 		<div class="Infor-container">
-			<input type="text" name="Methods-input" id="Methods-input" placeholder="Enter Method name">
+			<input type="text" name="Methods-input" id="Methods-input" placeholder="Nhập tên phương thức">
 			<div style="display: flex; position: relative; left:20%;">
-				<div class="btn btn-ok">Save</div>
-				<div class="btn btn-cancel">Cancel</div>
+				<div class="btn btn-ok">Lưu</div>
+				<div class="btn btn-cancel">Hủy</div>
 			</div>
 		</div>
 	</div>

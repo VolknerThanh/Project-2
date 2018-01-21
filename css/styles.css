@@ -139,11 +139,8 @@
 	font-size: 25px;
 	font-family: sans-serif;
 }
-.fa-close{
-	float: right;
-
-}
 .btn-del-food{
+	float: right;
 	cursor: pointer;
 }
 .add-food-form{
@@ -168,4 +165,64 @@
 }
 .button-save-addfood:active{
 	background-color: #7a0000;
+}
+.DeleteConfirm{
+	position: absolute;
+	left: 30%;
+	top: 25%;
+	width: 40%;
+	height: 40%;
+	border: 2px solid black;
+	border-radius: 10px;
+	padding: 2em;
+	background-color: white;
+	color: red;
+	text-align: center;
+	text-transform: uppercase;
+	display: none;
+}
+#ConfirmTitle{
+	font-weight: 900;
+	font-family: Courier;
+	font-size: 200%;
+	color: white;
+	background-color: #aa0000;
+	padding: 1em;
+}
+.button-confirm, .button-cancel-confirm{
+	font-family: courier;
+	width: 40%;
+	padding: .8em;
+}
+/* --------------*/
+
+.foodDetails-container{
+	border: 1px solid #245bb5;
+	border-radius: 10px;
+	position: absolute;
+	left: 20%;
+	top: 5%;
+	width: 60%;
+	height: 80%;
+	max-height: 500px;
+	padding: 1em;
+	overflow-y: auto;
+	background-color: white;
+	text-align: center;
+}
+.link-to-materials{
+	text-decoration: none;
+	font-size: 20px;
+	color: blue;
+	margin: 1em;
+}
+.searchMaterials{
+	border: none;
+	border-bottom: 2px solid black;
+	width: 65%;
+	padding: .3em;
+	outline: none;
+	text-align: center;
+	letter-spacing: 2px;
+	font-size: 22px;
 }
