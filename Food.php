@@ -82,7 +82,7 @@ header("Pragma: no-cache");
 				foreach ($foodlist as $value) {
 			?>
 			<div class="food" id="foodNo_<?php echo $value['IdFood'] ?>_<?php echo $value['IdMethod'] ?>">
-				<a href="FoodDetail.php?idfood=<?php echo $value['IdFood']; ?>" class="food-name"><?php echo $value['FoodName'] ?></a>
+				<a href="FoodDetail.php?idfood=<?php echo $value['IdFood']; ?>&idmethod=<?php echo $value['IdMethod'] ?>" class="food-name"><?php echo $value['FoodName'] ?></a>
 				<i class="fa fa-close btn-del-food" onclick='getInfo("<?php echo $value['IdFood'] ?>", "<?php echo $value['IdMethod'] ?>");'></i>
 			</div>
 			<?php

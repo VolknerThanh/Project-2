@@ -2,6 +2,7 @@
 	include("db/database.php");
 
 	$idfood = $_GET['idfood'];
+	$idmethod = $_GET['idmethod'];
 
 	function ShowFoodName($id){
 		global $conn;
@@ -12,6 +13,7 @@
 		$result = $stmt->get_result();
 		return $result->fetch_assoc()['FoodName'];
 	}
+
 
 
 	header("Expires: Tue, 01 Jan 2000 00:00:00 GMT");
@@ -72,7 +74,71 @@
 	</div>
 
 	<script type="text/javascript">
-		$('.btn-addmtr-tofood')
+		$('.btn-addmtr-tofood').click(function() {
+			var inputvalue = $('.searchMaterials').val();
+
+			if(inputvalue == "" || inputvalue == null) {
+				alert('Hãy nhập vào ô tìm kiếm !');
+				return false;
+			}
+
+			// check exist in database
+			$.ajax({
+				url: 'xuly.php',
+				type: 'POST',
+				data: { content: inputvalue },
+			})
+			.done(function(res) {
+				if(res == "No")
+					alert("Hãy nhập đúng tên nguyên liệu !");
+				else
+					Check_Exist_In_List(inputvalue);
+			});
+		});
+
+		function Check_Exist_In_List(input_content){
+			$.ajax({
+				url: 'xuly.php',
+				type: 'POST',
+				data: {
+					thiscontent: input_content,
+					idfood: '<?php echo $idfood; ?>'
+				},
+			}).done(function(res) {
+				if(res == "Yes")
+					alert("Hãy nhập nguyên liệu khác, nguyên liệu " + input_content + " này đã được thêm !");
+				else
+					Add_This_Material(res);
+			});
+		}
+
+
+		/*/=================================================\*\
+		||			THIS FUNCTION IS UNDER WORKING ...   	 ||
+		||													 ||
+		||  + Thêm ô nhập số lượng ( số thực nên là textbox) ||
+		||  + Phần tiêu chuẩn ( cho check kiểu radiobutton ) ||
+		||	+ Viết hàm insert vào database					 ||
+		||													 ||
+		\*\=================================================/*/
+
+		function Add_This_Material(MaterialId){
+			$.ajax({
+				url: 'xuly.php',
+				type: 'POST',
+				data: {
+					mtr_ID: MaterialId,
+					idfood: '<?php echo $idfood; ?>'
+				},
+			}).done(function(res) {
+				if(res == "Yes")
+					alert("Hãy nhập nguyên liệu khác, nguyên liệu " + input_content + " này đã được thêm !");
+				else
+					Add_This_Material(input_content);
+			});
+		}
+
+
 	</script>
 </body>
 </html>
