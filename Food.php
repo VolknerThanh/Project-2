@@ -17,9 +17,9 @@
 			return "Existed";
 		}
 		else{
-			$sql = "INSERT INTO `foods` (`IdMethod`, `FoodName`) VALUES (?, ?);";
+			$sql = "INSERT INTO `foods` (`IdFood`, `IdMethod`, `FoodName`) VALUES (?, ?, ?);";
 			$stmt = $conn->prepare($sql);
-			$stmt->bind_param('is', $_POST['id'], $_POST['value']);
+			$stmt->bind_param('iis', SetId("foods"), $_POST['id'], $_POST['value']);
 			$stmt->execute();
 		}
 	}
@@ -69,7 +69,7 @@ header("Pragma: no-cache");
 
 
 	<div class="food-container">
-		<h1 style="text-align: center;">Phương thức <?php echo $name; ?></h1>
+		<h1 style="text-align: center;">Các món theo phương thức <?php echo $name; ?></h1>
 		<br>
 		
 		<div class="btn btn-addfood">
@@ -118,7 +118,7 @@ header("Pragma: no-cache");
 		
 		$(document).ready(function() {
 
-			$('.button-save-addfood').click(function() {
+			function SaveIt() {
 				var isNull = false;
 				var isExisted = false;
 				var input_value = $('.Food-input').val();
@@ -147,6 +147,17 @@ header("Pragma: no-cache");
 						}
 					});
 				}
+			}
+
+			$('.button-save-addfood').click(function() {
+				SaveIt();
+			});
+
+			$('.Food-input').keypress(function(event) {
+				event = event || window.event;
+				kc = event.KeyCode || event.which;
+				if(kc == 13)
+					SaveIt();
 			});
 		});
 

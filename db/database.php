@@ -55,4 +55,16 @@ function SetID ($tableName) {
     return $so;
 }
 
+function load_materials(){
+	global $conn;
+
+	$rtn  = array();
+	$res = $conn->query("SELECT Material_name FROM `materials`");
+
+	while( $arr = $res->fetch_assoc() ){
+		$rtn[] = $arr;
+	}
+	return $rtn;
+}
+
 ?>

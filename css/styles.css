@@ -115,9 +115,9 @@
 	border-radius: 10px;
 	border: 1px solid #245bb5;
 	padding: 1.2em;
-	width: 30%;
+	width: 40%;
 	position: relative;
-	left: 35%;
+	left: 30%;
 	top: 33px;
 }
 .foods-list{
@@ -211,7 +211,6 @@
 	text-align: center;
 }
 .link-to-materials{
-	text-decoration: none;
 	font-size: 20px;
 	color: blue;
 	margin: 1em;
@@ -219,10 +218,43 @@
 .searchMaterials{
 	border: none;
 	border-bottom: 2px solid black;
-	width: 65%;
+	width: 45%;
 	padding: .3em;
 	outline: none;
 	text-align: center;
 	letter-spacing: 2px;
 	font-size: 22px;
+}
+.btn-addmtr-tofood{
+	font-family: sans-serif;
+}
+
+/*-------------------------------*/
+.Materials-container{
+	text-align: center;
+	width: 40%;
+	position: relative;
+	left: 28%;
+	padding: 2em;
+}
+.Materials-list{
+	display: flex;
+	flex-direction: column;
+	width: 60%;
+	margin-left: 5em;
+	padding: 1em;
+	padding-left: 3em;
+	padding-right: 0;
+	border-radius: 10px;
+	border: 1px solid #245bb5;
+}
+.Mrt-item{
+	line-height: 2em;
+}
+.material_name{
+	float: left;
+	color: #1557c1;
+	font-weight: 700;
+	font-size: 22px;
+	font-family: sans-serif;
 }

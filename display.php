@@ -12,9 +12,9 @@
 		
 		global $conn;
 
-		$sql = "INSERT INTO `foodmethods` (`FM_name`) VALUES(?)";
+		$sql = "INSERT INTO `foodmethods`(`FM_id` , `FM_name`) VALUES(?, ?)";
 		$stmt = $conn->prepare($sql);
-		$stmt->bind_param('s', $name);
+		$stmt->bind_param('is', SetID("foodmethods"), $name);
 		$stmt->execute();
 	}
 		
@@ -81,35 +81,44 @@
 
 	<script>
 		
-		$('.btn-ok').click(function() {
-		if($('#Methods-input').val() == null || $('#Methods-input').val() == "")
-			alert('please fill the box');
-		else{
-		
+		function SaveIt() {
+			if($('#Methods-input').val() == null || $('#Methods-input').val() == "")
+				alert('please fill the box');
+			else{
+				var name = $('#Methods-input').val();
 
-			var name = $('#Methods-input').val();
+				$.ajax({
+					url: 'display.php',
+					type: 'POST',
+					data: {_name: name},
+				})
+				.done(function(res) {
+					//alert(res);
+					var addMethod = `
+					<a href="Food.php?id=`+ res +`" class="methods">
+						<h2>`+ $('#Methods-input').val() +`</h2>
+					</a>
+					`;
+					$('.list-methods').append(addMethod);
+				})
+				.fail(function() {
+					console.log("error");
+				});
 
-			$.ajax({
-				url: 'display.php',
-				type: 'POST',
-				data: {_name: name},
-			})
-			.done(function(res) {
-				//alert(res);
-				var addMethod = `
-				<a href="Food.php?id=`+ res +`" class="methods">
-					<h2>`+ $('#Methods-input').val() +`</h2>
-				</a>
-				`;
-				$('.list-methods').append(addMethod);
-			})
-			.fail(function() {
-				console.log("error");
-			});
-
-			$('.fill-information').hide(500);
+				$('.fill-information').hide(500);
+			}	
 		}
-	});
+
+		$('.btn-ok').click(function() {
+			SaveIt();
+		});
+
+		$('#Methods-input').keypress(function(event) {
+			event = event || window.event;
+			keycode = event.keyCode || event.which;
+			if(keycode == 13)
+				SaveIt();
+		});
 
 	</script>
 </html>
