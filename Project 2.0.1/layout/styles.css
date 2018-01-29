@@ -5,7 +5,7 @@
 }
 
 /* SAME PROPERTIES */
-.methods-container, .foods-container, .details-container{
+.login-container, .methods-container, .foods-container, .details-container{
 	border-radius: 10px;
 	border: 2px solid #1c417c;
 	text-align: center;
@@ -16,6 +16,7 @@
 	font-family: sans-serif;
 	font-size: 250%;
 	margin: 1em 0;
+	text-align: center;
 }
 .foods-item, .methods-item{
 	font-size: 250%;

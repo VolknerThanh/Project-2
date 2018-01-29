@@ -1,6 +1,7 @@
 <?php
 
 $conn = new mysqli("localhost", "root", "", "silverrain_db");
+//$conn = new mysqli("sql209.byethost8.com", "b8_21469115", "AnonymousSilver", "b8_21469115_silverrain_db");
 
 mysqli_set_charset($conn, "utf8");
 
@@ -79,4 +80,52 @@ function CountFoodDetail($idfood) {
 	
 		return $result->num_rows;
 }
+
+function SetID ($tableName, $idname) {
+    global $conn;
+
+    $f = false;
+    $so = -1;
+
+    $query = "SELECT * FROM $tableName";
+    $stmt = $conn->prepare($query);
+    
+    $stmt->execute();
+    $res = $stmt->get_result();
+
+    for ($i = 1; $i <= $res->num_rows && $f == false; $i++)
+    {
+        $string = "SELECT * FROM $tableName WHERE $idname = " . $i;
+        if ($res->num_rows == 0)
+        {
+            $so = $i;
+            $f = true;
+        }
+    }
+    if ($so == -1)
+        $so = $res->num_rows + 1;
+    return $so;
+}
+
+function SignUpAccs($name, $username, $pass){
+	global $conn;
+	$query = "INSERT INTO account(Id, Username, PASSWORD, NAMES) VALUES(?, ?, ?, ?)";
+	$stmt = $conn->prepare($query);
+	$stmt->bind_param("isss", SetID("account", "Id"), $username, $name, $pass);
+	$stmt->execute();
+}
+
+function CheckAccount($username, $password){
+	global $conn;
+	$query = "SELECT * FROM account WHERE username =? AND PASSWORD = ?";
+	$stmt = $conn->prepare($query);
+	$stmt->bind_param("ss", $username, $password);
+	$stmt->execute();
+	$res = $stmt->get_result();
+	if($res->num_rows == 0)
+		return "false";
+	else
+		return "true";
+}
+
 ?>

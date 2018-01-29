@@ -1,0 +1,28 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+.login-form, .signup-form{
+	position: relative;
+	left: 22%;
+	margin-bottom: 2em;
+}
+label{
+	font-size: 150%;
+	font-weight: 700;
+	float: left;
+}
+.UserInfo{
+	width: 100%;
+	font-size: 20px;
+	padding: 0.5em;
+	margin-left: 5em;
+	outline: none;
+	user-select: none;
+	border: none;
+	border-bottom: 2px solid black;
+}
+.btn-login, .btn-signup{
+	width: 50%;
+	margin-top: 3em;
+}
