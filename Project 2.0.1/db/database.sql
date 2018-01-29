@@ -16,6 +16,20 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`silverrain_db` /*!40100 DEFAULT CHARACT
 
 USE `silverrain_db`;
 
+/*Table structure for table `account` */
+
+DROP TABLE IF EXISTS `account`;
+
+CREATE TABLE `account` (
+  `Id` int(3) NOT NULL AUTO_INCREMENT,
+  `Username` varchar(10) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL,
+  `Password` varchar(20) NOT NULL,
+  `Names` varchar(50) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+/*Data for the table `account` */
+
 /*Table structure for table `foodmaterials` */
 
 DROP TABLE IF EXISTS `foodmaterials`;
