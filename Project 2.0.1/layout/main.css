@@ -26,3 +26,115 @@ label{
 	width: 50%;
 	margin-top: 3em;
 }
+.btn-login:active , .btn-signup:active{
+	background-color: #a00c1b;
+}
+
+/* ----------------------------------- */
+.menu-bar{
+	background-color: #303030;
+	min-height: 2em;
+	box-shadow: -0.01em .5em .8em 0em gray;
+	margin-bottom: 4em;
+	padding: 1em;
+	padding-right: 3em;
+}
+.user{
+	float: right;
+	margin-right: 2em;
+	padding: .3em .4em;
+	border-radius: 10px;
+	font-size: 120%;
+	font-weight: bold;
+	font-family: sans-serif;
+	color: white;
+	text-transform: uppercase;
+}
+.btn-signout{
+	float: right;
+	padding: .3em 1em!important;
+	margin: 0!important;
+	background-color: green!important;
+}
+.btn-signout:active{
+	background-color: forestgreen!important;
+}
+
+/* -------------------------- */
+.list-box{
+	display: flex;
+	flex-direction: column;
+	column-count: 3;
+	position: relative;
+	left: 12%;
+	width: 90%;
+}
+.box-items{
+	padding: 2em 3em;
+	margin: 2em;
+	width: 55%;
+	border-radius: 20px;
+	background-color: dodgerblue;
+	color: white;
+	font-family: sans-serif;
+	font-size: 180%;
+	font-weight: bold;
+	cursor: pointer;
+	user-select: none;
+	outline: none;
+}
+.box-items:active{
+	background-color: #09285b;
+}
+.methods-wrapper{
+	margin: 2em;
+	display: flex;
+	flex-direction: row;
+}
+.admin-methods-list{
+	display: flex;
+	flex-direction: column;
+}
+.admin-methods-item{
+	padding: 1em 3em;
+	margin: 1em;
+	border-radius: 20px;
+	width: 50%;
+	font-family: sans-serif;
+	font-size: 2em;
+	font-weight: 600;
+	color: white;
+	background-color: red;
+	cursor: pointer;
+	user-select: none;
+}
+.Delete_form, .Add_form, .Edit_form{
+	border-radius: 10px;
+	border: 2px solid black;
+	outline: none;
+	background-color: white;
+	position: absolute;
+	left: 5em;
+	top: 15em;
+	width: 80%;
+	min-height: 30em;
+	padding: 1em;
+}
+.Add_form, .Delete_form, .Edit_form{
+	display: none;
+}
+.inputAddName, .inputEditName{
+	width: 90%!important;
+	margin: 1em .5em;
+}
+.btnAddMethods{
+	font-size: 2em!important;
+	background-color: #383838!important;
+}
+.btnFalse, .btnSave-NewName{
+	background-color: green!important;
+}
+.btnSave-NewName, .btnCancel-NewName, .btnTrue, .btnFalse{
+	width: 50%;
+	text-align: center;
+}

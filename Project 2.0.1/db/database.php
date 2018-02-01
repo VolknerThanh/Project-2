@@ -109,9 +109,9 @@ function SetID ($tableName, $idname) {
 
 function SignUpAccs($name, $username, $pass){
 	global $conn;
-	$query = "INSERT INTO account(Id, Username, PASSWORD, NAMES) VALUES(?, ?, ?, ?)";
+	$query = "INSERT INTO account(Id, NAMES, Username, PASSWORD) VALUES(?, ?, ?, ?)";
 	$stmt = $conn->prepare($query);
-	$stmt->bind_param("isss", SetID("account", "Id"), $username, $name, $pass);
+	$stmt->bind_param("isss", SetID("account", "Id"), $name, $username, $pass);
 	$stmt->execute();
 }
 
@@ -126,6 +126,68 @@ function CheckAccount($username, $password){
 		return "false";
 	else
 		return "true";
+}
+
+function CheckExistedMethodName($newname){
+	global $conn;
+	$query = "SELECT * FROM `foodmethods` WHERE FM_name LIKE ?";
+	$stmt = $conn->prepare($query);
+	$stmt->bind_param("s", $newname);
+	$stmt->execute();
+	$res = $stmt->get_result();
+	if($res->num_rows > 0)
+		return true;
+	else
+		return false;
+}
+
+function AddNewMethods($name){
+	global $conn;
+
+	if(CheckExistedMethodName($name) == false){
+		$query = "INSERT INTO `foodmethods` (FM_id, FM_name) VALUES (?, ?)";
+		$stmt = $conn->prepare($query);
+		$stmt->bind_param("is", SetID("foodmethods","FM_id"), $name);
+		$stmt->execute();
+		return "done";
+	}
+	else{
+		return "error";
+	}
+}
+
+function Update_MethodName($newname, $thisId){
+	global $conn;
+
+	if(CheckExistedMethodName($newname) == false) {
+		$query = "UPDATE foodmethods SET `FM_name` = ? WHERE `FM_id` = ?";
+		$stmt = $conn->prepare($query);
+		$stmt->bind_param("si", $newname, $thisId);
+		$stmt->execute();
+		return "Done";
+	}
+	else{
+		return "Error";
+	}
+}
+
+function DeleteMethod($id){
+	global $conn;
+	$query = "DELETE FROM `foodmaterials` WHERE Food_ID = ( SELECT Idfood FROM foods WHERE `IdMethod` = ? )";
+	$stmt = $conn->prepare($query);
+	$stmt->bind_param("i", $id);
+	$stmt->execute();
+
+	$query = "DELETE FROM `foods` WHERE IdMethod = ?";
+	$stmt = $conn->prepare($query);
+	$stmt->bind_param("i", $id);
+	$stmt->execute();
+
+	$query = "DELETE FROM `foodmethods` WHERE FM_id = ?";
+	$stmt = $conn->prepare($query);
+	$stmt->bind_param("i", $id);
+	$stmt->execute();	
+	return "done";
 }
 
 ?>

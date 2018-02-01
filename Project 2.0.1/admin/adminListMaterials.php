@@ -9,8 +9,6 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
-
-
 ?>
 
 <!DOCTYPE html>
@@ -18,48 +16,31 @@ header("Pragma: no-cache");
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Quản lý</title>
+	<title>Nguyên Liệu</title>
 	<link rel="stylesheet" href="../layout/main.css">
 	<link rel="stylesheet" href="../layout/styles.css">
 	<script src="../lib/jquery-3.2.1.min.js"></script>
 	<script src="../lib/scripts.js"></script>
 	<!-- font -->
 	<link href="https://fonts.googleapis.com/css?family=Bungee+Hairline|Dhurjati|Grand+Hotel|Inconsolata|Italianno|Pacifico|Rochester" rel="stylesheet">
-	<!--
-		font-family: 'Dhurjati', sans-serif;
-		font-family: 'Inconsolata', monospace;
-		font-family: 'Pacifico', cursive;
-		font-family: 'Rochester', cursive;
-		font-family: 'Bungee Hairline', cursive;
-		font-family: 'Italianno', cursive;
-		font-family: 'Grand Hotel', cursive;
-	-->
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 	
-
 	<div class="menu-bar">
 		<div class="btn btn-signout">Đăng xuất</div>
-		<span class="user">	<?php echo $_SESSION['username']; ?> </span>
+		<span class="user"><?php echo $_SESSION['username']; ?> </span>
 	</div>
 
+	<div class="details-container">
+		<h1 class="container-title">Danh Sách Các Nguyên Liệu</h1>
+		<div>
 			
-	<div class="methods-container">
-		<h1>Khu vực quản lý</h1>
-		<div class="list-box">
-			<div class="box-items" onclick=" location.href='adminListAccounts.php' ">
-				Tài Khoản
-			</div>
-			<div class="box-items" onclick=" location.href='adminListMethods.php' ">
-				Phương Thức
-			</div>
-			<div class="box-items" onclick=" location.href='adminListMaterials.php' ">
-				Nguyên Liệu
-			</div>
 		</div>
 	</div>
 
-	
+
+
 </body>
 </html>

@@ -1,4 +1,5 @@
 <?php 
+session_start();
 include ('db/database.php');
 
 $name = "";
@@ -12,7 +13,20 @@ if( !empty($_POST['name']) && !empty($_POST['username']) && !empty($_POST['passw
 
 	SignUpAccs($name, $username, $password);
 }
+else if (isset($_POST["logout"])){
+	unset($_SESSION["username"]);
+}
 
 
+if(!empty($_POST['methodId']) && !empty($_POST['methodNewName'])){
+	echo Update_MethodName($_POST['methodNewName'], $_POST['methodId']);
+}
 
+if(!empty($_POST['delId'])){
+	echo DeleteMethod($_POST['delId']);
+}
+
+if(!empty( $_POST['methodName'] )){
+	echo AddNewMethods($_POST['methodName']);
+}
 ?>
