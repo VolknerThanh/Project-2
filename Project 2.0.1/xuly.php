@@ -41,4 +41,12 @@ if(!empty($_POST['Accname']) && !empty($_POST['Accusername']) && !empty($_POST['
 if(!empty($_POST['updateId']) && !empty($_POST['updateName']) && !empty($_POST['updateUN']) && !empty($_POST['updatePass'])){
 	echo UpdateAccounts($_POST['updateId'], $_POST['updateName'], $_POST['updateUN'], $_POST['updatePass']);
 }
+
+if( !empty($_POST['Mtr_Id'])){
+	DeleteMaterials($_POST['Mtr_Id']);
+}
+else if(!empty($_POST['mtr_name']) && !empty($_POST['mtr_unit'])){
+	echo AddMaterials($_POST['mtr_name'], $_POST['mtr_unit']);
+}
+
 ?>

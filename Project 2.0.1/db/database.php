@@ -239,4 +239,44 @@ function UpdateAccounts($AccId, $AccName, $AccUsername, $AccPassword){
 		return "error";
 	}
 }
+
+function DeleteMaterials($mtr_id){
+	global $conn;
+
+	$fmtr_cmd = "DELETE FROM foodmaterials WHERE `Material_ID` = ?";
+	$stmt = $conn->prepare($fmtr_cmd);
+	$stmt->bind_param("i", $mtr_id);
+	$stmt->execute();
+
+	$mtr_cmd = "DELETE FROM materials WHERE `IdMaterial` = ?";
+	$stmt = $conn->prepare($mtr_cmd);
+	$stmt->bind_param("i", $mtr_id);
+	$stmt->execute();
+}
+
+function CheckExistedMaterials($name){
+	global $conn;
+	$query = "SELECT * FROM materials WHERE `Material_name` = ?";
+	$stmt = $conn->prepare($query);
+	$stmt->bind_param("s", $name);
+	$stmt->execute();
+	$res = $stmt->get_result();
+	if($res->num_rows > 0)
+		return true;
+	else
+		return false;
+}
+
+function AddMaterials($mtr_name, $mtr_unit){
+	global $conn;
+
+	if(CheckExistedMaterials($mtr_name) == false){
+		$query = "INSERT INTO materials (IdMaterial, Material_name, Material_Unit) VALUES (?,?,?)";
+		$stmt = $conn->prepare($query);
+		$stmt->bind_param("iss", $mtr_name, $mtr_unit);
+		$stmt->execute();
+	}
+
+}
+
 ?>

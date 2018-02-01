@@ -4,6 +4,7 @@ function RedirectToDetail(idfood) {
 }
 var editThisId = -1;
 var AccId = -1;
+var mtr_id = -1;
 
 $(document).ready(function() {
 
@@ -283,6 +284,61 @@ $(document).ready(function() {
 		$('.admin-accounts-list').show();
 	});
 
+   // ============== Materials ==============
+
+    $('.btnAddMaterials').click(function() {
+		$('.Add_mtr_form').show();
+		$('.admin-materials-list').hide(200);
+    });
+
+    $('.btnCancelAddMTR').click(function() {
+		$('.Add_mtr_form').hide(500);
+		$('.admin-materials-list').show();
+    });
+    $('.btnCancelEditMTR').click(function() {
+		$('.Edit_mtr_form').hide(500);
+		$('.admin-materials-list').show();
+    });
+    $('.btnCancelDelMTR').click(function() {
+		$('.Delete_mtr_form').hide(500);
+		$('.admin-materials-list').show();
+    });
+
+    $('.btnDelMTR').click(function() {
+    	$.ajax({
+    		url: '../xuly.php',
+    		type: 'POST',
+    		data: { Mtr_Id : mtr_id },
+    	})
+    	.done(function(res) {
+    		alert("Đã xóa nguyên liệu này !");
+    		location.reload();
+			$('.Delete_mtr_form').hide(500);
+			$('.admin-materials-list').show();
+    	});
+    });
+
+    $('.btnAddMTR').click(function() {
+    	var mtrName = $('.inputAddMTRname').val().trim();
+    	var mtrUnit = $('.inputAddMTRunit').val().trim();
+    	if(mtrName == "" || mtrUnit == "")
+    		alert("Hãy điền đầy đủ thông tin !");
+    	else{
+    		$.ajax({
+    			url: '../xuly.php',
+    			type: 'POST',
+    			data: {
+    				mtr_name : mtrName,
+    				mtr_unit : mtrUnit
+    			},
+    		})
+    		.done(function(res) {
+    			//
+    		});
+    		
+    	}
+    });
+
 });
 
 
@@ -308,4 +364,14 @@ function Update_Acc_Id(thisId){
 	$('.Edit_Acc_form').show();
 	$('.admin-accounts-list').hide(200);
 	AccId = thisId;
+}
+function Edit_MTR(thisID){
+	$('.Edit_mtr_form').show();
+	$('.admin-materials-list').hide(200);
+	mtr_id = thisID;
+}
+function Delete_MTR(thisID){
+	$('.Delete_mtr_form').show();
+	$('.admin-materials-list').hide(200);
+	mtr_id = thisID;
 }

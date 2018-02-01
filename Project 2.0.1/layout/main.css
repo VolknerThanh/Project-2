@@ -21,6 +21,7 @@ label{
 	user-select: none;
 	border: none;
 	border-bottom: 2px solid black;
+	border-radius: 0;
 }
 .btn-login, .btn-signup{
 	width: 50%;
@@ -86,7 +87,7 @@ label{
 .box-items:active{
 	background-color: #09285b;
 }
-.methods-wrapper{
+.materials-wrapper, .methods-wrapper{
 	margin: 2em;
 	display: flex;
 	flex-direction: row;
@@ -108,7 +109,7 @@ label{
 	cursor: pointer;
 	user-select: none;
 }
-.Add_Acc_form, .Edit_Acc_form, .Delete_Acc_form, .Delete_form, .Add_form, .Edit_form{
+.Add_mtr_form, .Edit_mtr_form, .Delete_mtr_form, .Add_Acc_form, .Edit_Acc_form, .Delete_Acc_form, .Delete_form, .Add_form, .Edit_form{
 	border-radius: 10px;
 	border: 2px solid black;
 	outline: none;
@@ -121,10 +122,10 @@ label{
 	padding: 1em;
 	display: flex;
 }
-.Add_Acc_form, .Edit_Acc_form, .Delete_Acc_form, .Add_form, .Delete_form, .Edit_form{
+.Add_mtr_form, .Edit_mtr_form, .Delete_mtr_form, .Add_Acc_form, .Edit_Acc_form, .Delete_Acc_form, .Add_form, .Delete_form, .Edit_form{
 	display: none;
 }
-.inputAccUpdateName, .inputAccUpdateUsername, .inputAccUpdatePassword, .inputAccUpdateConfirmPass, .inputAccAddName, .inputAccAddUsername, .inputAccAddPassword, .inputAccConfirmPass{
+.inputAddMTRname, .inputAddMTRunit, .inputEditMTRname, .inputEditMTRunit, .inputAccUpdateName, .inputAccUpdateUsername, .inputAccUpdatePassword, .inputAccUpdateConfirmPass, .inputAccAddName, .inputAccAddUsername, .inputAccAddPassword, .inputAccConfirmPass{
 	width: 80%!important;
 	margin: 0.6em;
 }
@@ -132,21 +133,22 @@ label{
 	width: 90%!important;
 	margin: 1em .5em;
 }
+/* Nút thêm nguyên liệu */
 .btnAddMaterials, .btnAddAccounts, .btnAddMethods{
 	font-size: 2em!important;
 	background-color: #383838!important;
+	border-radius: 50px!important;
 }
-.btnSaveUpdateAcc, .btnSaveNewAcc, .btnAcc_Cancel, .btnFalse, .btnSave-NewName{
+.btnAddMTR, .btnEditMTR, .btnCancelDelMTR, .btnSaveUpdateAcc, .btnSaveNewAcc, .btnAcc_Cancel, .btnFalse, .btnSave-NewName{
 	background-color: green!important;
 }
-.btnSaveNewAcc, .btnCancelNewAcc, .btnAcc_Confirm, .btnAcc_Cancel, .btnSave-NewName, .btnCancel-NewName, .btnTrue, .btnFalse{
+.btnAddMTR, .btnCancelAddMTR, .btnEditMTR, .btnCancelEditMTR, .btnDelMTR, .btnCancelDelMTR, .btnSaveNewAcc, .btnCancelNewAcc, .btnAcc_Confirm, .btnAcc_Cancel, .btnSave-NewName, .btnCancel-NewName, .btnTrue, .btnFalse{
 	width: 50%;
 	text-align: center;
 }
 .TableTitle{
 	background-color: #212121;
 	color: white;
-	border-radius: 10px;
 	font-size: 1.8em;
 	font-weight: 500;
 	font-family: sans-serif;
@@ -161,4 +163,13 @@ label{
 }
 td{
 	max-width: 35%;
+}
+.admin-Material-Item{
+	padding: 0.5em 2em;
+	border-radius: 10px;
+	font-size: 1.5em;
+	font-weight: 500;
+	font-family: sans-serif;
+	color: white;
+	margin: 0.5em;
 }
