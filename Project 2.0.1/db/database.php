@@ -190,4 +190,53 @@ function DeleteMethod($id){
 	return "done";
 }
 
+function DeleteAccounts($AccId){
+	global $conn;
+	$query = "DELETE FROM account WHERE Id = ?";
+	$stmt = $conn->prepare($query);
+	$stmt->bind_param("i", $AccId);
+	$stmt->execute();	
+	return "done";
+}
+
+function CheckExistedAccountUsername($username){
+	global $conn;
+	$query = "SELECT * FROM `account` WHERE Username = ?";
+	$stmt = $conn->prepare($query);
+	$stmt->bind_param("s", $username);
+	$stmt->execute();
+	$res = $stmt->get_result();
+	if($res->num_rows > 0)
+		return true;
+	else
+		return false;
+}
+
+function AddAccounts($AccName, $AccUsername, $AccPassword){
+	if(CheckExistedAccountUsername($AccUsername) == false){
+		global $conn;
+		$query = "INSERT INTO account (Id, NAMES, Username, PASSWORD) VALUES(?, ?, ?, ?)";
+		$stmt = $conn->prepare($query);
+		$stmt->bind_param("isss", SetID("account", "Id"), $AccName, $AccUsername, $AccPassword);
+		$stmt->execute();
+		return "done";
+	}
+	else{
+		return "error";
+	}
+}
+
+function UpdateAccounts($AccId, $AccName, $AccUsername, $AccPassword){
+	if(CheckExistedAccountUsername($AccUsername) == false){
+		global $conn;
+		$query = "UPDATE account SET NAMES = ?, username = ?, PASSWORD = ? WHERE Id = ?";
+		$stmt = $conn->prepare($query);
+		$stmt->bind_param("sssi", $AccName, $AccUsername, $AccPassword, $AccId);
+		$stmt->execute();
+		return "done";
+	}
+	else{
+		return "error";
+	}
+}
 ?>

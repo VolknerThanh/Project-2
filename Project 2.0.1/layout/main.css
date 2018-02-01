@@ -4,7 +4,7 @@
 }
 .login-form, .signup-form{
 	position: relative;
-	left: 22%;
+	left: 8em;
 	margin-bottom: 2em;
 }
 label{
@@ -91,7 +91,7 @@ label{
 	display: flex;
 	flex-direction: row;
 }
-.admin-methods-list{
+.admin-materials-list, .admin-accounts-list, .admin-methods-list{
 	display: flex;
 	flex-direction: column;
 }
@@ -108,7 +108,7 @@ label{
 	cursor: pointer;
 	user-select: none;
 }
-.Delete_form, .Add_form, .Edit_form{
+.Add_Acc_form, .Edit_Acc_form, .Delete_Acc_form, .Delete_form, .Add_form, .Edit_form{
 	border-radius: 10px;
 	border: 2px solid black;
 	outline: none;
@@ -119,22 +119,46 @@ label{
 	width: 80%;
 	min-height: 30em;
 	padding: 1em;
+	display: flex;
 }
-.Add_form, .Delete_form, .Edit_form{
+.Add_Acc_form, .Edit_Acc_form, .Delete_Acc_form, .Add_form, .Delete_form, .Edit_form{
 	display: none;
+}
+.inputAccUpdateName, .inputAccUpdateUsername, .inputAccUpdatePassword, .inputAccUpdateConfirmPass, .inputAccAddName, .inputAccAddUsername, .inputAccAddPassword, .inputAccConfirmPass{
+	width: 80%!important;
+	margin: 0.6em;
 }
 .inputAddName, .inputEditName{
 	width: 90%!important;
 	margin: 1em .5em;
 }
-.btnAddMethods{
+.btnAddMaterials, .btnAddAccounts, .btnAddMethods{
 	font-size: 2em!important;
 	background-color: #383838!important;
 }
-.btnFalse, .btnSave-NewName{
+.btnSaveUpdateAcc, .btnSaveNewAcc, .btnAcc_Cancel, .btnFalse, .btnSave-NewName{
 	background-color: green!important;
 }
-.btnSave-NewName, .btnCancel-NewName, .btnTrue, .btnFalse{
+.btnSaveNewAcc, .btnCancelNewAcc, .btnAcc_Confirm, .btnAcc_Cancel, .btnSave-NewName, .btnCancel-NewName, .btnTrue, .btnFalse{
 	width: 50%;
 	text-align: center;
+}
+.TableTitle{
+	background-color: #212121;
+	color: white;
+	border-radius: 10px;
+	font-size: 1.8em;
+	font-weight: 500;
+	font-family: sans-serif;
+	padding: .5em 1.5em;
+}
+.AccountItems{
+	padding: .5em 2em;
+	font-size: 1.2em;
+	font-weight: bold;
+	font-family: sans-serif;
+	margin: 0.5em 0;
+}
+td{
+	max-width: 35%;
 }

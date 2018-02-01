@@ -35,8 +35,27 @@ header("Pragma: no-cache");
 
 	<div class="details-container">
 		<h1 class="container-title">Danh Sách Các Nguyên Liệu</h1>
-		<div>
-			
+		<div class="admin-materials-list">
+			<div class="btn btnAddMaterials">Thêm nguyên liệu</div>
+			<?php
+				include ("..db/database.php");
+				$materialsList = getDataByTable("materials");
+				$foreach ($materialsList as $value) {
+					$mtr_name = $value['Material_name'];
+					$mtr_id = $value['IdMaterial'];
+					$mtr_unit = $value['Material_Unit'];
+			?>
+			<div class="methods-wrapper">
+				<div class="admin-methods-item" onclick="toInfo('<?php echo $method_id ?>');">
+					<?php echo $method_name; ?>
+				</div>
+				<i class="fa fa-edit" onclick="Edit_Method_Id('<?php echo $method_id; ?>'); " style="font-size: 3em; margin: 1em"></i>
+				<i class="material-icons" onclick="Delete_Method_Id('<?php echo $method_id; ?>');" style="font-size:3em; margin: 1em">delete</i>
+			</div>
+
+			<?php
+				}
+			?>
 		</div>
 	</div>
 

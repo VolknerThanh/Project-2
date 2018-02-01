@@ -29,4 +29,16 @@ if(!empty($_POST['delId'])){
 if(!empty( $_POST['methodName'] )){
 	echo AddNewMethods($_POST['methodName']);
 }
+
+if(!empty( $_POST['delAccId'] )){
+	echo DeleteAccounts($_POST['delAccId']);
+}
+
+if(!empty($_POST['Accname']) && !empty($_POST['Accusername']) && !empty($_POST['Accpassword'])){
+	echo AddAccounts($_POST['Accname'], $_POST['Accusername'], $_POST['Accpassword']);
+}
+
+if(!empty($_POST['updateId']) && !empty($_POST['updateName']) && !empty($_POST['updateUN']) && !empty($_POST['updatePass'])){
+	echo UpdateAccounts($_POST['updateId'], $_POST['updateName'], $_POST['updateUN'], $_POST['updatePass']);
+}
 ?>

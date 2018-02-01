@@ -3,6 +3,7 @@ function RedirectToDetail(idfood) {
 	location.href = link;
 }
 var editThisId = -1;
+var AccId = -1;
 
 $(document).ready(function() {
 
@@ -73,6 +74,8 @@ $(document).ready(function() {
 		});
 		
 	});
+
+	/* ---------- Methods ---------- */
 
 	$('.btnSave-NewName').click(function() {
 		ChangeName();
@@ -172,7 +175,117 @@ $(document).ready(function() {
 		$('.admin-methods-list').show();
 	});
 
+	/* ----------- Accounts ---------- */
+
+	$('.btnAddAccounts').click(function() {
+		$('.Add_Acc_form').show(500);
+		$('.admin-accounts-list').hide(200);
+	});
+
+	$('.btnCancelNewAcc').click(function() {
+		$('.Add_Acc_form').hide(500);
+		$('.admin-accounts-list').show();
+	});
+
+	$('.btnSaveNewAcc').click(function() {
+		var accName = $('.inputAccAddName').val().trim();
+		var accUN = $('.inputAccAddUsername').val().trim();
+		var accPass = $('.inputAccAddPassword').val().trim();
+		var accConf = $('.inputAccConfirmPass').val().trim();
+		if(accName == "" || accUN == "" || accPass == "" || accConf == ""){
+			alert("Hãy điền đầy đủ thông tin !");
+		}
+		else if(accPass != accConf){
+			alert("Xác nhận lại mật khẩu !");
+		}
+		else{
+			$.ajax({
+				url: '../xuly.php',
+				type: 'POST',
+				data: {
+					Accname : accName,
+					Accusername : accUN,
+					Accpassword : accPass
+				},
+			})
+			.done(function(res) {
+				if(res == "done"){
+					alert('Đã lưu tài khoản vào cơ sở dữ liệu !');
+					location.reload();
+					$('.Add_Acc_form').hide(500);
+					$('.admin-accounts-list').show();
+				}
+				else{
+					alert("Tên đăng nhập '" + accUN + "' đã tồn tại ! thử lại");
+				}
+			});
+			
+		}
+	});
+
+	$('.btnAcc_Confirm').click(function(){
+		$.ajax({
+			url: '../xuly.php',
+			type: 'POST',
+			data: {delAccId: AccId},
+		})
+		.done(function(res) {
+			alert("Đã xóa tài khoản !");
+			location.reload();
+			$('.Delete_Acc_form').hide();
+			$('.admin-accounts-list').show();
+		});
+	});
+
+	$('.btnAcc_Cancel').click(function() {
+		$('.Delete_Acc_form').hide(500);
+		$('.admin-accounts-list').show();
+	});
+
+	$('.btnSaveUpdateAcc').click(function() {
+		var upd_name = $('.inputAccUpdateName').val().trim();
+		var upd_UN = $('.inputAccUpdateUsername').val().trim();
+		var upd_pass = $('.inputAccUpdatePassword').val().trim();
+		var upd_con = $('.inputAccUpdateConfirmPass').val().trim();
+		if(upd_name == "" || upd_UN == "" || upd_pass == "" || upd_con == ""){
+			alert("Hãy điền đầy đủ thông tin !");
+		}
+		else if(upd_pass != upd_con){
+			alert("Xác nhận lại mật khẩu !");
+		}
+		else{
+			$.ajax({
+				url: '../xuly.php',
+				type: 'POST',
+				data: {
+					updateId : AccId,
+					updateName : upd_name,
+					updateUN : upd_UN,
+					updatePass : upd_pass
+				},
+			})
+			.done(function(res) {
+				if(res == "done"){
+					alert("Đã lưu thay đổi !");
+					location.reload();
+					$('.Edit_Acc_form').hide(500);
+					$('.admin-accounts-list').show();
+				}
+				else{
+					alert("Tên đăng nhập đã tồn tại !");
+				}
+			});
+		}
+	});
+
+	$('.btnCancelUpdateAcc').click(function() {
+		$('.Edit_Acc_form').hide(500);
+		$('.admin-accounts-list').show();
+	});
+
 });
+
+
 function Edit_Method_Id(thisid){
 	$('.Edit_form').show(500);
 	$('.admin-methods-list').hide(200);
@@ -185,4 +298,14 @@ function Delete_Method_Id(thisid){
 }
 function toInfo(thisId){
 	location.href = "info.php?idmethod="+thisId;
+}
+function Delete_Acc_Id(thisid){
+	$('.Delete_Acc_form').show();
+	$('.admin-accounts-list').hide(200);
+	AccId = thisid;
+}
+function Update_Acc_Id(thisId){
+	$('.Edit_Acc_form').show();
+	$('.admin-accounts-list').hide(200);
+	AccId = thisId;
 }
