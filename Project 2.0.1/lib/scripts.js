@@ -104,9 +104,9 @@ $(document).ready(function() {
 			.done(function(res) {
 				if(res == "Done"){
 					alert("Đã lưu thay đổi !");
+					location.reload();
 					$('.Edit_form').hide(500);
 					$('.admin-methods-list').show();
-					location.reload();
 				}
 				else{
 					alert('Phương thức "'+ newName + '" này đã tồn tại trong cơ sở dữ liệu !');
@@ -333,7 +333,14 @@ $(document).ready(function() {
     			},
     		})
     		.done(function(res) {
-    			//
+    			if(res == "done"){
+    				alert('Đã lưu vào cơ sở dữ liệu !');
+    				location.reload();
+					$('.Add_mtr_form').hide(500);
+					$('.admin-materials-list').show();
+    			}
+    			else
+    				alert('Nguyên liệu "'+mtrName+'" đã tồn tại !');
     		});
     		
     	}

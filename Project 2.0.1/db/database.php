@@ -89,14 +89,16 @@ function SetID ($tableName, $idname) {
 
     $query = "SELECT * FROM $tableName";
     $stmt = $conn->prepare($query);
-    
     $stmt->execute();
     $res = $stmt->get_result();
 
     for ($i = 1; $i <= $res->num_rows && $f == false; $i++)
     {
         $string = "SELECT * FROM $tableName WHERE $idname = " . $i;
-        if ($res->num_rows == 0)
+        $cmd = $conn->prepare($string);
+	    $cmd->execute();
+	    $result = $cmd->get_result();
+        if ($result->num_rows == 0)
         {
             $so = $i;
             $f = true;
@@ -128,11 +130,16 @@ function CheckAccount($username, $password){
 		return "true";
 }
 
-function CheckExistedMethodName($newname){
+/* ======================================================================== */
+/* ======================================================================== */
+/* ======================== function check existed ======================== */
+
+
+function CheckExistedToAdd($tablename, $_thisname, $name){
 	global $conn;
-	$query = "SELECT * FROM `foodmethods` WHERE FM_name LIKE ?";
+	$query = "SELECT * FROM $tablename WHERE $_thisname LIKE ?";
 	$stmt = $conn->prepare($query);
-	$stmt->bind_param("s", $newname);
+	$stmt->bind_param("s", $name);
 	$stmt->execute();
 	$res = $stmt->get_result();
 	if($res->num_rows > 0)
@@ -141,10 +148,27 @@ function CheckExistedMethodName($newname){
 		return false;
 }
 
+function CheckExistedToUpdate($tablename, $_thisname, $name, $idname, $id){
+	global $conn;
+	$query = "SELECT * FROM $tablename WHERE $_thisname LIKE ? AND $idname != ?";
+	$stmt = $conn->prepare($query);
+	$stmt->bind_param("ss", $name, $id);
+	$stmt->execute();
+	$res = $stmt->get_result();
+	if($res->num_rows != 0)
+		return true;
+	else
+		return false;
+}
+/* ======================================================================== */
+/* ======================================================================== */
+/* ======================================================================== */
+
+
 function AddNewMethods($name){
 	global $conn;
 
-	if(CheckExistedMethodName($name) == false){
+	if(CheckExistedToAdd("foodmethods","FM_name",$name) == false){
 		$query = "INSERT INTO `foodmethods` (FM_id, FM_name) VALUES (?, ?)";
 		$stmt = $conn->prepare($query);
 		$stmt->bind_param("is", SetID("foodmethods","FM_id"), $name);
@@ -159,7 +183,7 @@ function AddNewMethods($name){
 function Update_MethodName($newname, $thisId){
 	global $conn;
 
-	if(CheckExistedMethodName($newname) == false) {
+	if(CheckExistedToUpdate("foodmethods","FM_name", $newname, "FM_id", $thisId) == false) {
 		$query = "UPDATE foodmethods SET `FM_name` = ? WHERE `FM_id` = ?";
 		$stmt = $conn->prepare($query);
 		$stmt->bind_param("si", $newname, $thisId);
@@ -199,21 +223,8 @@ function DeleteAccounts($AccId){
 	return "done";
 }
 
-function CheckExistedAccountUsername($username){
-	global $conn;
-	$query = "SELECT * FROM `account` WHERE Username = ?";
-	$stmt = $conn->prepare($query);
-	$stmt->bind_param("s", $username);
-	$stmt->execute();
-	$res = $stmt->get_result();
-	if($res->num_rows > 0)
-		return true;
-	else
-		return false;
-}
-
 function AddAccounts($AccName, $AccUsername, $AccPassword){
-	if(CheckExistedAccountUsername($AccUsername) == false){
+	if(CheckExistedToAdd("account","Username",$AccUsername) == false){
 		global $conn;
 		$query = "INSERT INTO account (Id, NAMES, Username, PASSWORD) VALUES(?, ?, ?, ?)";
 		$stmt = $conn->prepare($query);
@@ -227,11 +238,11 @@ function AddAccounts($AccName, $AccUsername, $AccPassword){
 }
 
 function UpdateAccounts($AccId, $AccName, $AccUsername, $AccPassword){
-	if(CheckExistedAccountUsername($AccUsername) == false){
+	if(CheckExistedToUpdate("account","Username",$AccUsername,"Id",$AccId) == false){
 		global $conn;
-		$query = "UPDATE account SET NAMES = ?, username = ?, PASSWORD = ? WHERE Id = ?";
+		$query = "UPDATE account SET Id = ?, NAMES = ?, username = ?, PASSWORD = ? WHERE Id = ?";
 		$stmt = $conn->prepare($query);
-		$stmt->bind_param("sssi", $AccName, $AccUsername, $AccPassword, $AccId);
+		$stmt->bind_param("isssi",SetID("account", "Id"), $AccName, $AccUsername, $AccPassword, $AccId);
 		$stmt->execute();
 		return "done";
 	}
@@ -273,10 +284,12 @@ function AddMaterials($mtr_name, $mtr_unit){
 	if(CheckExistedMaterials($mtr_name) == false){
 		$query = "INSERT INTO materials (IdMaterial, Material_name, Material_Unit) VALUES (?,?,?)";
 		$stmt = $conn->prepare($query);
-		$stmt->bind_param("iss", $mtr_name, $mtr_unit);
+		$stmt->bind_param("iss", SetID("materials","IdMaterial"), $mtr_name, $mtr_unit);
 		$stmt->execute();
+		return "done";
 	}
-
+	else
+		return "error";
 }
 
 ?>
