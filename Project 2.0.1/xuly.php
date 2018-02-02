@@ -48,5 +48,8 @@ if( !empty($_POST['Mtr_Id'])){
 else if(!empty($_POST['mtr_name']) && !empty($_POST['mtr_unit'])){
 	echo AddMaterials($_POST['mtr_name'], $_POST['mtr_unit']);
 }
+else if(!empty($_POST['editName']) && !empty($_POST['editUnit']) && !empty($_POST['editId'])){
+	echo EditMaterials($_POST['editId'],$_POST['editName'],$_POST['editUnit']);
+}
 
 ?>

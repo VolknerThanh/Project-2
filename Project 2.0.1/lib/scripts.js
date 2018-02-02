@@ -342,6 +342,33 @@ $(document).ready(function() {
     			else
     				alert('Nguyên liệu "'+mtrName+'" đã tồn tại !');
     		});
+    	}
+    });
+    $('.btnEditMTR').click(function() {
+    	var edit_name = $('.inputEditMTRname').val().trim();
+    	var edit_unit = $('.inputEditMTRunit').val().trim();
+    	if(edit_name == "" || edit_unit == "")
+    		alert('Hãy điền đầy đủ thông tin !');
+    	else{
+    		$.ajax({
+    			url: '../xuly.php',
+    			type: 'POST',
+    			data: {
+    				editName: edit_name,
+    				editUnit: edit_unit,
+    				editId: mtr_id
+    			},
+    		})
+    		.done(function(res) {
+    			if(res == "done"){
+    				alert("Đã lưu thay đổi !");
+    				location.reload();
+					$('.Add_mtr_form').hide(500);
+					$('.admin-materials-list').show();
+    			}
+    			else
+    				alert('Nguyên liệu "'+edit_name+'" đã tồn tại !');
+    		});
     		
     	}
     });

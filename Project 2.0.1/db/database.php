@@ -265,26 +265,27 @@ function DeleteMaterials($mtr_id){
 	$stmt->execute();
 }
 
-function CheckExistedMaterials($name){
-	global $conn;
-	$query = "SELECT * FROM materials WHERE `Material_name` = ?";
-	$stmt = $conn->prepare($query);
-	$stmt->bind_param("s", $name);
-	$stmt->execute();
-	$res = $stmt->get_result();
-	if($res->num_rows > 0)
-		return true;
-	else
-		return false;
-}
-
 function AddMaterials($mtr_name, $mtr_unit){
 	global $conn;
 
-	if(CheckExistedMaterials($mtr_name) == false){
+	if(CheckExistedToAdd("materials","Material_name",$mtr_name) == false){
 		$query = "INSERT INTO materials (IdMaterial, Material_name, Material_Unit) VALUES (?,?,?)";
 		$stmt = $conn->prepare($query);
 		$stmt->bind_param("iss", SetID("materials","IdMaterial"), $mtr_name, $mtr_unit);
+		$stmt->execute();
+		return "done";
+	}
+	else
+		return "error";
+}
+
+function EditMaterials($mtr_id, $mtr_name, $mtr_unit){
+	global $conn;
+
+	if(CheckExistedToUpdate("materials","Material_name",$mtr_name,"IdMaterial",$mtr_id) == false){
+		$query = "UPDATE materials SET IdMaterial = ?, Material_name = ?, Material_Unit = ? WHERE IdMaterial = ?";
+		$stmt = $conn->prepare($query);
+		$stmt->bind_param("issi", SetID("materials","IdMaterial"), $mtr_name, $mtr_unit,$mtr_id);
 		$stmt->execute();
 		return "done";
 	}
