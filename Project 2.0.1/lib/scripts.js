@@ -5,6 +5,7 @@ function RedirectToDetail(idfood) {
 var editThisId = -1;
 var AccId = -1;
 var mtr_id = -1;
+var foodId = -1;
 
 $(document).ready(function() {
 
@@ -387,7 +388,7 @@ function Delete_Method_Id(thisid){
 	editThisId = thisid;
 }
 function toInfo(thisId){
-	location.href = "info.php?idmethod="+thisId;
+	location.href = "adminListFoods.php?idmethod="+thisId;
 }
 function Delete_Acc_Id(thisid){
 	$('.Delete_Acc_form').show();
@@ -408,4 +409,13 @@ function Delete_MTR(thisID){
 	$('.Delete_mtr_form').show();
 	$('.admin-materials-list').hide(200);
 	mtr_id = thisID;
+}
+function ToDetails(foodID){
+	location.href = "adminListFoodsDetails.php?idfood="+foodID;	
+}
+function Edit_food(ThisId){
+
+}
+function Delete_food(ThisId){
+
 }

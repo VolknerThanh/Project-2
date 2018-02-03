@@ -47,7 +47,7 @@
 					$method_id = $value['FM_id'];
 			?>
 				<div class="methods-wrapper">
-					<div class="admin-methods-item" onclick="toInfo('<?php echo $method_id ?>');">
+					<div class="admin-methods-item" title="click vào để xem thông tin" onclick="toInfo('<?php echo $method_id ?>');">
 						<?php echo $method_name; ?>
 					</div>
 					<i class="fa fa-edit" onclick="Edit_Method_Id('<?php echo $method_id; ?>'); " style="font-size: 3em; margin: 1em"></i>

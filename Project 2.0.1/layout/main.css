@@ -4,8 +4,12 @@
 }
 .login-form, .signup-form{
 	position: relative;
-	left: 8em;
+	left: 6em;
 	margin-bottom: 2em;
+	width: 80%;
+}
+.login-form > tbody > tr > td, .signup-form > tbody > tr > td{
+	width: 0!important;
 }
 label{
 	font-size: 150%;
@@ -13,10 +17,10 @@ label{
 	float: left;
 }
 .UserInfo{
-	width: 100%;
+	width: 80%;
 	font-size: 20px;
 	padding: 0.5em;
-	margin-left: 5em;
+	margin-left: 1em;
 	outline: none;
 	user-select: none;
 	border: none;
@@ -92,7 +96,7 @@ label{
 	display: flex;
 	flex-direction: row;
 }
-.admin-materials-list, .admin-accounts-list, .admin-methods-list{
+.admin-foods-list, .admin-materials-list, .admin-accounts-list, .admin-methods-list{
 	display: flex;
 	flex-direction: column;
 }
@@ -109,7 +113,7 @@ label{
 	cursor: pointer;
 	user-select: none;
 }
-.Add_mtr_form, .Edit_mtr_form, .Delete_mtr_form, .Add_Acc_form, .Edit_Acc_form, .Delete_Acc_form, .Delete_form, .Add_form, .Edit_form{
+.Add_foods_form, .Edit_foods_form, .Delete_foods_form, .Add_mtr_form, .Edit_mtr_form, .Delete_mtr_form, .Add_Acc_form, .Edit_Acc_form, .Delete_Acc_form, .Delete_form, .Add_form, .Edit_form{
 	border-radius: 10px;
 	border: 2px solid black;
 	outline: none;
@@ -122,10 +126,10 @@ label{
 	padding: 1em;
 	display: flex;
 }
-.Add_mtr_form, .Edit_mtr_form, .Delete_mtr_form, .Add_Acc_form, .Edit_Acc_form, .Delete_Acc_form, .Add_form, .Delete_form, .Edit_form{
+/*.Add_foods_form,*/ .Edit_foods_form, .Delete_foods_form, .Add_mtr_form, .Edit_mtr_form, .Delete_mtr_form, .Add_Acc_form, .Edit_Acc_form, .Delete_Acc_form, .Add_form, .Delete_form, .Edit_form{
 	display: none;
 }
-.inputAddMTRname, .inputAddMTRunit, .inputEditMTRname, .inputEditMTRunit, .inputAccUpdateName, .inputAccUpdateUsername, .inputAccUpdatePassword, .inputAccUpdateConfirmPass, .inputAccAddName, .inputAccAddUsername, .inputAccAddPassword, .inputAccConfirmPass{
+.inputAddFoodName, .inputAddMTRname, .inputAddMTRunit, .inputEditMTRname, .inputEditMTRunit, .inputAccUpdateName, .inputAccUpdateUsername, .inputAccUpdatePassword, .inputAccUpdateConfirmPass, .inputAccAddName, .inputAccAddUsername, .inputAccAddPassword, .inputAccConfirmPass{
 	width: 80%!important;
 	margin: 0.6em;
 }
@@ -134,7 +138,7 @@ label{
 	margin: 1em .5em;
 }
 /* Nút thêm nguyên liệu */
-.btnAddMaterials, .btnAddAccounts, .btnAddMethods{
+.btnAddFoods, .btnAddMaterials, .btnAddAccounts, .btnAddMethods{
 	font-size: 2em!important;
 	background-color: #383838!important;
 	border-radius: 50px!important;
@@ -161,10 +165,13 @@ label{
 	font-family: sans-serif;
 	margin: 0.5em 0;
 }
+table{
+	width: 100%;
+}
 td{
 	max-width: 35%;
 }
-.admin-Material-Item{
+.admin-foods-item, .admin-Material-Item{
 	padding: 0.5em 2em;
 	border-radius: 10px;
 	font-size: 1.5em;
