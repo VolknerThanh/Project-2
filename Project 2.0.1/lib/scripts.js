@@ -105,9 +105,9 @@ $(document).ready(function() {
 			.done(function(res) {
 				if(res == "Done"){
 					alert("Đã lưu thay đổi !");
-					location.reload();
 					$('.Edit_form').hide(500);
 					$('.admin-methods-list').show();
+					location.reload();
 				}
 				else{
 					alert('Phương thức "'+ newName + '" này đã tồn tại trong cơ sở dữ liệu !');
@@ -213,9 +213,9 @@ $(document).ready(function() {
 			.done(function(res) {
 				if(res == "done"){
 					alert('Đã lưu tài khoản vào cơ sở dữ liệu !');
-					location.reload();
 					$('.Add_Acc_form').hide(500);
 					$('.admin-accounts-list').show();
+					location.reload();
 				}
 				else{
 					alert("Tên đăng nhập '" + accUN + "' đã tồn tại ! thử lại");
@@ -233,9 +233,9 @@ $(document).ready(function() {
 		})
 		.done(function(res) {
 			alert("Đã xóa tài khoản !");
-			location.reload();
-			$('.Delete_Acc_form').hide();
 			$('.admin-accounts-list').show();
+			$('.Delete_Acc_form').hide();
+			location.reload();
 		});
 	});
 
@@ -269,9 +269,9 @@ $(document).ready(function() {
 			.done(function(res) {
 				if(res == "done"){
 					alert("Đã lưu thay đổi !");
-					location.reload();
 					$('.Edit_Acc_form').hide(500);
 					$('.admin-accounts-list').show();
+					location.reload();
 				}
 				else{
 					alert("Tên đăng nhập đã tồn tại !");
@@ -313,9 +313,9 @@ $(document).ready(function() {
     	})
     	.done(function(res) {
     		alert("Đã xóa nguyên liệu này !");
-    		location.reload();
 			$('.Delete_mtr_form').hide(500);
 			$('.admin-materials-list').show();
+    		location.reload();
     	});
     });
 
@@ -336,9 +336,9 @@ $(document).ready(function() {
     		.done(function(res) {
     			if(res == "done"){
     				alert('Đã lưu vào cơ sở dữ liệu !');
-    				location.reload();
 					$('.Add_mtr_form').hide(500);
 					$('.admin-materials-list').show();
+    				location.reload();
     			}
     			else
     				alert('Nguyên liệu "'+mtrName+'" đã tồn tại !');
@@ -363,9 +363,9 @@ $(document).ready(function() {
     		.done(function(res) {
     			if(res == "done"){
     				alert("Đã lưu thay đổi !");
-    				location.reload();
 					$('.Add_mtr_form').hide(500);
 					$('.admin-materials-list').show();
+    				location.reload();
     			}
     			else
     				alert('Nguyên liệu "'+edit_name+'" đã tồn tại !');
@@ -374,8 +374,82 @@ $(document).ready(function() {
     	}
     });
 
+    /* --------- FOODS ----------*/
+
+    $('.btnAddFoods').click(function() {
+    	$('.Add_foods_form').show();
+    	$('.admin-foods-list').hide(200);
+    });
+    $('.btnCancelAddFoods').click(function() {
+    	$('.Add_foods_form').hide(500);
+    	$('.admin-foods-list').show();
+    });
+    $('.btnCancelEditFoods').click(function() {
+    	$('.Edit_foods_form').hide(500);
+    	$('.admin-foods-list').show();
+    });
+    $('.btnCancelDeleteFoods').click(function() {
+    	$('.Delete_foods_form').hide(500);
+    	$('.admin-foods-list').show();
+    });
+
+    $('.btnSaveEditFoods').click(function() {
+    	var inputEditFood = $('.inputEditFoodName').val().trim();
+    	if(inputEditFood == "")
+    		alert('Hãy điền đầy đủ thông tin !');
+    	else {
+    		$.ajax({
+    			url: '../xuly.php',
+    			type: 'POST',
+    			data: {
+    				editContent: inputEditFood,
+    				FoodID : foodId
+    			},
+    		})
+    		.done(function(res) {
+    			if(res == "done"){
+    				alert('Đã lưu thay đổi !');
+			    	$('.Edit_foods_form').hide(500);
+			    	$('.admin-foods-list').show();
+    				location.reload();
+    			}
+    			else {
+    				alert("Món ăn tên '" + inputEditFood + "' đã tồn tại !");
+    			}
+    		});
+    	}
+    });
+
+    $('.btnDeleteFoods').click(function() {
+    	$.ajax({
+    		url: '../xuly.php',
+    		type: 'POST',
+    		data: {DelFoodID: foodId},
+    	})
+    	.done(function() {
+    		alert("Đã xóa món này !");
+	    	$('.Delete_foods_form').hide(500);
+	    	$('.admin-foods-list').show();
+			location.reload();
+    	});
+    });
+
+    /* ============================================= */
+    /* ===================Details=================== */
+
+    $('.btnAddFoodMTR').click(function() {
+    	$('.Add_details_form').show();
+    	$('.admin-details-list').hide(200);
+    });
+
+
 });
 
+/* =========================================== */
+/* =========================================== */
+/* =========================================== */
+/* =========================================== */
+/* =========================================== */
 
 function Edit_Method_Id(thisid){
 	$('.Edit_form').show(500);
@@ -414,8 +488,12 @@ function ToDetails(foodID){
 	location.href = "adminListFoodsDetails.php?idfood="+foodID;	
 }
 function Edit_food(ThisId){
-
+	$('.Edit_foods_form').show();
+	$('.admin-foods-list').hide(200);
+	foodId = ThisId;
 }
 function Delete_food(ThisId){
-
+	$('.Delete_foods_form').show();
+	$('.admin-foods-list').hide(200);
+	foodId = ThisId;
 }

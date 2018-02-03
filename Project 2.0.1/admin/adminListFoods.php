@@ -21,8 +21,8 @@ $_methodName = getMethodName($idmethod);
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>phương thức <?php echo $_methodName; ?></title>
-	<link rel="stylesheet" href="../layout/main.css">
 	<link rel="stylesheet" href="../layout/styles.css">
+	<link rel="stylesheet" href="../layout/main.css">
 	<script src="../lib/jquery-3.2.1.min.js"></script>
 	<script src="../lib/scripts.js"></script>
 	<!-- font -->
@@ -53,6 +53,7 @@ $_methodName = getMethodName($idmethod);
 						foreach ($foodList as $value) {
 							$food_name = $value['FoodName'];
 							$food_id = $value['IdFood'];
+							$method_id = $value['IdMethod'];
 					?>
 
 					<tr>
@@ -76,24 +77,67 @@ $_methodName = getMethodName($idmethod);
 	</div>
 
 	<div class="Add_foods_form">
-		<h1 style="text-align: center; font-size: 3em; ">Thêm Món Ăn Cho Phương Thức</h1>
+		<h1 style="text-align: center; font-size: 3em;">Thêm món ăn theo phương thức</h1>
 		<br>
 		<center>
-			<label style="float:left; margin:1em 5em .5em .8em; font-size: 2em;">Nhập tên món ăn mới: </label>
+			<label style="float:left; margin:1em 5em .5em .8em; font-size: 2em;">Nhập tên món ăn :</label>
 			<input class="inputAddFoodName" type="text" name="inputAddFoodName" placeholder="Nhập tên món ... ">
-			<button class="btn btnAddFood">Lưu</button>
-			<button class="btn btnCancelAddFood">Hủy</button>
+			<button class="btn btnSaveAddFoods">Lưu</button>
+			<button class="btn btnCancelAddFoods">Hủy</button>
 		</center>
 	</div>
 
 	<div class="Edit_foods_form">
 		<h1 style="text-align: center; font-size: 3em; width: 100%">Sửa Tên Món Ăn</h1>
+		<br>
+		<center>
+			<label style="float:left; margin:1em 5em .5em .8em; font-size: 2em;">Sửa tên món ăn :</label>
+			<input class="inputEditFoodName" type="text" name="inputEditFoodName" placeholder="Nhập tên món ... ">
+			<button class="btn btnSaveEditFoods">Lưu</button>
+			<button class="btn btnCancelEditFoods">Hủy</button>
+		</center>
 	</div>
 
 	<div class="Delete_foods_form">
 		<h1 style="text-align: center; font-size: 3em; width: 100%">Xóa Món Ăn Này</h1>
+		<br>
+		<center>
+			<label style="float:left; margin:1em 5em .5em .8em; font-size: 2em;">Xác nhận xóa món này :</label>
+			<button class="btn btnDeleteFoods">Xóa</button>
+			<button class="btn btnCancelDeleteFoods">Hủy</button>
+		</center>
 	</div>
 
+	<script type="text/javascript">
+		$('.btnSaveAddFoods').click(function() {
+    	var FoodInfo = $('.inputAddFoodName').val().trim();
+
+    	if(FoodInfo == "")
+    		alert('Hãy điền đầy đủ thông tin !');
+    	else {
+    		$.ajax({
+    			url: '../xuly.php',
+    			type: 'POST',
+    			data: {
+    				foodname: FoodInfo,
+    				foodmethodid: <?php echo $idmethod ?>
+    			},
+    		})
+    		.done(function(res) {
+    			if(res == "done"){
+    				alert('Đã lưu thay đổi !');
+			    	$('.Add_foods_form').hide(500);
+			    	$('.admin-foods-list').show();
+    				location.reload();
+    			}
+    			else {
+    				alert("Món ăn tên '" + FoodInfo + "' đã tồn tại !");
+    			}
+    		});
+    		
+    	}
+    });
+	</script>
 </body>
 </html>
 

@@ -96,7 +96,7 @@ label{
 	display: flex;
 	flex-direction: row;
 }
-.admin-foods-list, .admin-materials-list, .admin-accounts-list, .admin-methods-list{
+.admin-details-list, .admin-foods-list, .admin-materials-list, .admin-accounts-list, .admin-methods-list{
 	display: flex;
 	flex-direction: column;
 }
@@ -113,7 +113,7 @@ label{
 	cursor: pointer;
 	user-select: none;
 }
-.Add_foods_form, .Edit_foods_form, .Delete_foods_form, .Add_mtr_form, .Edit_mtr_form, .Delete_mtr_form, .Add_Acc_form, .Edit_Acc_form, .Delete_Acc_form, .Delete_form, .Add_form, .Edit_form{
+.Add_details_form, .Delete_foods_form, .Edit_foods_form, .Add_foods_form, .Edit_foods_form, .Delete_foods_form, .Add_mtr_form, .Edit_mtr_form, .Delete_mtr_form, .Add_Acc_form, .Edit_Acc_form, .Delete_Acc_form, .Delete_form, .Add_form, .Edit_form{
 	border-radius: 10px;
 	border: 2px solid black;
 	outline: none;
@@ -126,27 +126,30 @@ label{
 	padding: 1em;
 	display: flex;
 }
-/*.Add_foods_form,*/ .Edit_foods_form, .Delete_foods_form, .Add_mtr_form, .Edit_mtr_form, .Delete_mtr_form, .Add_Acc_form, .Edit_Acc_form, .Delete_Acc_form, .Add_form, .Delete_form, .Edit_form{
+.Add_details_form, .Delete_foods_form, .Edit_foods_form, .Add_foods_form, .Edit_foods_form, .Delete_foods_form, .Add_mtr_form, .Edit_mtr_form, .Delete_mtr_form, .Add_Acc_form, .Edit_Acc_form, .Delete_Acc_form, .Add_form, .Delete_form, .Edit_form{
 	display: none;
 }
-.inputAddFoodName, .inputAddMTRname, .inputAddMTRunit, .inputEditMTRname, .inputEditMTRunit, .inputAccUpdateName, .inputAccUpdateUsername, .inputAccUpdatePassword, .inputAccUpdateConfirmPass, .inputAccAddName, .inputAccAddUsername, .inputAccAddPassword, .inputAccConfirmPass{
+.inputAddDetails, .inputEditFoodName, .inputAddFoodName, .inputAddMTRname, .inputAddMTRunit, .inputEditMTRname, .inputEditMTRunit, .inputAccUpdateName, .inputAccUpdateUsername, .inputAccUpdatePassword, .inputAccUpdateConfirmPass, .inputAccAddName, .inputAccAddUsername, .inputAccAddPassword, .inputAccConfirmPass{
 	width: 80%!important;
 	margin: 0.6em;
+}
+.ui-widget input, .ui-menu-item-wrapper{
+	font-size: 2em!important;
 }
 .inputAddName, .inputEditName{
 	width: 90%!important;
 	margin: 1em .5em;
 }
 /* Nút thêm nguyên liệu */
-.btnAddFoods, .btnAddMaterials, .btnAddAccounts, .btnAddMethods{
+.btnAddFoodMTR, .btnAddFoods, .btnAddMaterials, .btnAddAccounts, .btnAddMethods{
 	font-size: 2em!important;
 	background-color: #383838!important;
 	border-radius: 50px!important;
 }
-.btnAddMTR, .btnEditMTR, .btnCancelDelMTR, .btnSaveUpdateAcc, .btnSaveNewAcc, .btnAcc_Cancel, .btnFalse, .btnSave-NewName{
+.btnSaveAddDetails, .btnCancelDeleteFoods, .btnSaveEditFoods, .btnSaveAddFoods, .btnAddMTR, .btnEditMTR, .btnCancelDelMTR, .btnSaveUpdateAcc, .btnSaveNewAcc, .btnAcc_Cancel, .btnFalse, .btnSave-NewName{
 	background-color: green!important;
 }
-.btnAddMTR, .btnCancelAddMTR, .btnEditMTR, .btnCancelEditMTR, .btnDelMTR, .btnCancelDelMTR, .btnSaveNewAcc, .btnCancelNewAcc, .btnAcc_Confirm, .btnAcc_Cancel, .btnSave-NewName, .btnCancel-NewName, .btnTrue, .btnFalse{
+.btnSaveAddDetails, .btnCancelAddDetails, .btnDeleteFoods, .btnCancelDeleteFoods, .btnSaveEditFoods, .btnCancelEditFoods, .btnSaveAddFoods, .btnCancelAddFoods, .btnAddMTR, .btnCancelAddMTR, .btnEditMTR, .btnCancelEditMTR, .btnDelMTR, .btnCancelDelMTR, .btnSaveNewAcc, .btnCancelNewAcc, .btnAcc_Confirm, .btnAcc_Cancel, .btnSave-NewName, .btnCancel-NewName, .btnTrue, .btnFalse{
 	width: 50%;
 	text-align: center;
 }
@@ -171,7 +174,7 @@ table{
 td{
 	max-width: 35%;
 }
-.admin-foods-item, .admin-Material-Item{
+.admin-details-item, .admin-foods-item, .admin-Material-Item{
 	padding: 0.5em 2em;
 	border-radius: 10px;
 	font-size: 1.5em;

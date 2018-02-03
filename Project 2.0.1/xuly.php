@@ -52,4 +52,12 @@ else if(!empty($_POST['editName']) && !empty($_POST['editUnit']) && !empty($_POS
 	echo EditMaterials($_POST['editId'],$_POST['editName'],$_POST['editUnit']);
 }
 
+
+if( !empty($_POST['foodname']) && !empty($_POST['foodmethodid']))
+	echo AddFoods($_POST['foodname'],$_POST['foodmethodid']);
+
+if( !empty($_POST['editContent']) && !empty($_POST['FoodID']) )
+	echo EditFoods($_POST['editContent'], $_POST['FoodID']);
+if(!empty($_POST['DelFoodID']))
+	DeleteFoods($_POST['DelFoodID']);
 ?>

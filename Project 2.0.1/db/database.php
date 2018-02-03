@@ -240,9 +240,9 @@ function AddAccounts($AccName, $AccUsername, $AccPassword){
 function UpdateAccounts($AccId, $AccName, $AccUsername, $AccPassword){
 	if(CheckExistedToUpdate("account","Username",$AccUsername,"Id",$AccId) == false){
 		global $conn;
-		$query = "UPDATE account SET Id = ?, NAMES = ?, username = ?, PASSWORD = ? WHERE Id = ?";
+		$query = "UPDATE account SET NAMES = ?, username = ?, PASSWORD = ? WHERE Id = ?";
 		$stmt = $conn->prepare($query);
-		$stmt->bind_param("isssi",SetID("account", "Id"), $AccName, $AccUsername, $AccPassword, $AccId);
+		$stmt->bind_param("sssi", $AccName, $AccUsername, $AccPassword, $AccId);
 		$stmt->execute();
 		return "done";
 	}
@@ -283,14 +283,57 @@ function EditMaterials($mtr_id, $mtr_name, $mtr_unit){
 	global $conn;
 
 	if(CheckExistedToUpdate("materials","Material_name",$mtr_name,"IdMaterial",$mtr_id) == false){
-		$query = "UPDATE materials SET IdMaterial = ?, Material_name = ?, Material_Unit = ? WHERE IdMaterial = ?";
+		$query = "UPDATE materials SET Material_name = ?, Material_Unit = ? WHERE IdMaterial = ?";
 		$stmt = $conn->prepare($query);
-		$stmt->bind_param("issi", SetID("materials","IdMaterial"), $mtr_name, $mtr_unit,$mtr_id);
+		$stmt->bind_param("ssi", $mtr_name, $mtr_unit,$mtr_id);
 		$stmt->execute();
 		return "done";
 	}
 	else
 		return "error";
 }
+
+function AddFoods($foodName, $methodID){
+	global $conn;
+
+	if(CheckExistedToAdd('foods', 'FoodName', $foodName)== false){
+		$query = "INSERT INTO foods (IdFood, FoodName, IdMethod) VALUES (?,?,?)";
+		$stmt = $conn->prepare($query);
+		$stmt->bind_param("isi", SetID("foods","Idfood"), $foodName, $methodID);
+		$stmt->execute();
+		return "done";
+	}
+	else
+		return "error";
+}
+
+function EditFoods($foodName, $foodID){
+	global $conn;
+
+	if(CheckExistedToUpdate("foods", "FoodName", $foodName, "IdFood", $foodID) == false) {
+		$query = "UPDATE foods SET FoodName = ? WHERE IdFood = ?";
+		$stmt = $conn->prepare($query);
+		$stmt->bind_param("si", $foodName, $foodID);
+		$stmt->execute();
+		return "done";
+	}
+	else
+		return "error";
+}
+
+function DeleteFoods($idfood){
+	global $conn;
+
+	$query_1 = "DELETE FROM foodmaterials WHERE Food_ID = ?";
+	$cmd_1 = $conn->prepare($query_1);
+	$cmd_1->bind_param("i", $idfood);
+	$cmd_1->execute();
+
+	$query_2 = "DELETE FROM foods WHERE IdFood = ?";
+	$cmd_2 = $conn->prepare($query_2);
+	$cmd_2->bind_param("i", $idfood);
+	$cmd_2->execute();
+}
+
 
 ?>
