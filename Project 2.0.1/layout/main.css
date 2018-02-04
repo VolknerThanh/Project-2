@@ -113,7 +113,7 @@ label{
 	cursor: pointer;
 	user-select: none;
 }
-.Add_details_form, .Delete_foods_form, .Edit_foods_form, .Add_foods_form, .Edit_foods_form, .Delete_foods_form, .Add_mtr_form, .Edit_mtr_form, .Delete_mtr_form, .Add_Acc_form, .Edit_Acc_form, .Delete_Acc_form, .Delete_form, .Add_form, .Edit_form{
+.Edit_details_form, .Delete_details_form, .Add_details_form, .Delete_foods_form, .Edit_foods_form, .Add_foods_form, .Edit_foods_form, .Delete_foods_form, .Add_mtr_form, .Edit_mtr_form, .Delete_mtr_form, .Add_Acc_form, .Edit_Acc_form, .Delete_Acc_form, .Delete_form, .Add_form, .Edit_form{
 	border-radius: 10px;
 	border: 2px solid black;
 	outline: none;
@@ -126,10 +126,10 @@ label{
 	padding: 1em;
 	display: flex;
 }
-.Add_details_form, .Delete_foods_form, .Edit_foods_form, .Add_foods_form, .Edit_foods_form, .Delete_foods_form, .Add_mtr_form, .Edit_mtr_form, .Delete_mtr_form, .Add_Acc_form, .Edit_Acc_form, .Delete_Acc_form, .Add_form, .Delete_form, .Edit_form{
+.Edit_details_form, .Delete_details_form, .Add_details_form, .Delete_foods_form, .Edit_foods_form, .Add_foods_form, .Edit_foods_form, .Delete_foods_form, .Add_mtr_form, .Edit_mtr_form, .Delete_mtr_form, .Add_Acc_form, .Edit_Acc_form, .Delete_Acc_form, .Add_form, .Delete_form, .Edit_form{
 	display: none;
 }
-.inputAddDetails, .inputEditFoodName, .inputAddFoodName, .inputAddMTRname, .inputAddMTRunit, .inputEditMTRname, .inputEditMTRunit, .inputAccUpdateName, .inputAccUpdateUsername, .inputAccUpdatePassword, .inputAccUpdateConfirmPass, .inputAccAddName, .inputAccAddUsername, .inputAccAddPassword, .inputAccConfirmPass{
+.inputEditDetailsQuan, .inputAddDetailsQuan, .inputEditDetails, .inputAddDetails, .inputEditFoodName, .inputAddFoodName, .inputAddMTRname, .inputAddMTRunit, .inputEditMTRname, .inputEditMTRunit, .inputAccUpdateName, .inputAccUpdateUsername, .inputAccUpdatePassword, .inputAccUpdateConfirmPass, .inputAccAddName, .inputAccAddUsername, .inputAccAddPassword, .inputAccConfirmPass{
 	width: 80%!important;
 	margin: 0.6em;
 }
@@ -146,10 +146,10 @@ label{
 	background-color: #383838!important;
 	border-radius: 50px!important;
 }
-.btnSaveAddDetails, .btnCancelDeleteFoods, .btnSaveEditFoods, .btnSaveAddFoods, .btnAddMTR, .btnEditMTR, .btnCancelDelMTR, .btnSaveUpdateAcc, .btnSaveNewAcc, .btnAcc_Cancel, .btnFalse, .btnSave-NewName{
+.btnCancelDeleteDetails, .btnSaveEditDetails, .btnSaveAddDetails, .btnCancelDeleteFoods, .btnSaveEditFoods, .btnSaveAddFoods, .btnAddMTR, .btnEditMTR, .btnCancelDelMTR, .btnSaveUpdateAcc, .btnSaveNewAcc, .btnAcc_Cancel, .btnFalse, .btnSave-NewName{
 	background-color: green!important;
 }
-.btnSaveAddDetails, .btnCancelAddDetails, .btnDeleteFoods, .btnCancelDeleteFoods, .btnSaveEditFoods, .btnCancelEditFoods, .btnSaveAddFoods, .btnCancelAddFoods, .btnAddMTR, .btnCancelAddMTR, .btnEditMTR, .btnCancelEditMTR, .btnDelMTR, .btnCancelDelMTR, .btnSaveNewAcc, .btnCancelNewAcc, .btnAcc_Confirm, .btnAcc_Cancel, .btnSave-NewName, .btnCancel-NewName, .btnTrue, .btnFalse{
+.btnCancelDeleteDetails, .btnSaveDeleteDetails, .btnCancelEditDetails, .btnSaveEditDetails, .btnSaveAddDetails, .btnCancelAddDetails, .btnDeleteFoods, .btnCancelDeleteFoods, .btnSaveEditFoods, .btnCancelEditFoods, .btnSaveAddFoods, .btnCancelAddFoods, .btnAddMTR, .btnCancelAddMTR, .btnEditMTR, .btnCancelEditMTR, .btnDelMTR, .btnCancelDelMTR, .btnSaveNewAcc, .btnCancelNewAcc, .btnAcc_Confirm, .btnAcc_Cancel, .btnSave-NewName, .btnCancel-NewName, .btnTrue, .btnFalse{
 	width: 50%;
 	text-align: center;
 }

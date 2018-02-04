@@ -52,11 +52,21 @@ function load_food_details($idfood) {
 	global $conn;
 	
 	$array = array();
-	$res = $conn->query("SELECT `Material_name`, `Quantity`, `Material_Unit` FROM `materials`, `foodmaterials` WHERE `materials`.`IdMaterial` = `foodmaterials`.`Material_ID` AND `foodmaterials`.`Food_ID` = $idfood");
+	$res = $conn->query("SELECT `IdMaterial`, `Material_name`, `Quantity`, `Material_Unit` FROM `materials`, `foodmaterials` WHERE `materials`.`IdMaterial` = `foodmaterials`.`Material_ID` AND `foodmaterials`.`Food_ID` = $idfood");
 	while($arr = $res->fetch_assoc()){
 		$array[] = $arr;
 	}
 	return $array;
+}
+
+function get_MTRid_by_name($MaterialName){
+	global $conn;
+	$query = "SELECT IdMaterial FROM materials WHERE Material_name = ?";
+	$stmt = $conn->prepare($query);
+	$stmt->bind_param("s", $MaterialName);
+	$stmt->execute();
+	$res = $stmt->get_result();
+	return $res->fetch_assoc()['IdMaterial'];
 }
 
 function CountFoodInMethod($idmethod){
@@ -335,5 +345,85 @@ function DeleteFoods($idfood){
 	$cmd_2->execute();
 }
 
+function CheckExistedToAddDetailsInFood($foodID, $materialID){
+	global $conn;
+
+	$query = "SELECT * FROM foodmaterials WHERE Food_ID = ? AND Material_ID = ?";
+	$cmd = $conn->prepare($query);
+	$cmd->bind_param("ii", $foodID, $materialID);
+	$cmd->execute();
+	$res = $cmd->get_result();
+	if($res->num_rows != 0)
+		return true;
+	else
+		return false;
+}
+function CheckExistedFromMaterialList($name){
+	global $conn;
+	$query = "SELECT * FROM materials WHERE Material_name = ?";
+	$stmt = $conn->prepare($query);
+	$stmt->bind_param("s", $name);
+	$stmt->execute();
+	$res = $stmt->get_result();
+	if($res->num_rows != 0)
+		return false;
+	else
+		return true;
+
+}
+function AddDetailsInFood($IdMaterial, $IdFood, $Quantity){
+	global $conn;
+	$standard = 0;
+	if(CheckExistedToAddDetailsInFood($IdFood, $IdMaterial) == false){
+		
+		$query = "INSERT INTO foodmaterials (Food_ID, Material_ID, Quantity, isStandard) VALUES (?,?,?,?)";
+		$stmt = $conn->prepare($query);
+		$stmt->bind_param("iidi", $IdFood, $IdMaterial, $Quantity, $standard);
+		$stmt->execute();
+
+		return "done";
+	}
+	else
+		return "error";
+}
+
+function CheckExistedToUpdateDetailsInFood($idfood, $newID){
+	global $conn;
+
+	$query = "SELECT * FROM foodmaterials WHERE Food_ID = ? AND Material_ID = ?";
+	$cmd = $conn->prepare($query);
+	$cmd->bind_param("ii", $idfood, $newID);
+	$cmd->execute();
+	$res = $cmd->get_result();
+	if($res->num_rows != 0)
+		return true;
+	else
+		return false;
+}
+
+function EditDetailsInFood($newID, $currentID, $IdFood, $Quantity){
+	global $conn;
+	$standard = 0;
+	if(CheckExistedToUpdateDetailsInFood($IdFood, $newID) == false){
+		$query = "UPDATE foodmaterials SET Material_ID = ?, Quantity = ? WHERE Food_ID = ? AND Material_ID = ?";
+		$stmt = $conn->prepare($query);
+		$stmt->bind_param("iiii", $newID, $Quantity, $IdFood, $currentID);
+		$stmt->execute();
+
+		return "done";
+	}
+	else
+		return "error";
+}
+
+function DeleteDetails($IDFOOD, $IDMTR){
+	global $conn;
+
+	$query = "DELETE FROM foodmaterials WHERE Food_ID = ? AND Material_ID = ?";
+	$stmt = $conn->prepare($query);
+	$stmt->bind_param("ii", $IDFOOD, $IDMTR);
+	$stmt->execute();
+	return "done";
+}
 
 ?>

@@ -46,7 +46,10 @@ $foodName = getFoodName($idfood);
 		
 		$( function() {
 			$('.inputAddDetails').autocomplete({
-			  source: array
+				source: array
+			});
+			$('.inputEditDetails').autocomplete({
+				source: array
 			});
 		});
 	</script>
@@ -62,7 +65,7 @@ $foodName = getFoodName($idfood);
 	<div class="details-container">
 		<h1 class="container-title">Chi Tiết Món <?php echo $foodName ?></h1>
 		<div class="admin-details-list">
-			<div class="btn btnAddFoodMTR">Thêm Nguyên Liệu Cho Món Này</div>
+			<div class="btn btnAddFoodMTR" onclick="AddDetails(<?php echo $idfood ?>);">Thêm Nguyên Liệu Cho Món Này</div>
 			<br>
 			<table>
 				<tbody>
@@ -75,6 +78,7 @@ $foodName = getFoodName($idfood);
 				<?php
 					$detailList = load_food_details($idfood);
 					foreach ($detailList as $value) {
+						$MTR_id = $value['IdMaterial'];
 						$MTR_name = $value['Material_name'];
 						$MTR_quan = $value['Quantity'];
 						$MTR_unit = $value['Material_Unit'];
@@ -84,8 +88,8 @@ $foodName = getFoodName($idfood);
 					<td><div class="admin-details-item" style="background-color: #201544"><?php echo $MTR_quan ?></div></td>
 					<td><div class="admin-details-item" style="background-color: #371947"><?php echo $MTR_unit ?></div></td>
 					<td>
-						<i class="fa fa-edit" onclick="EditDetails();" style="font-size: 2.5em; margin: 0.5em"></i>
-						<i class="material-icons" onclick="DeleteDetails();" style="font-size: 2.5em; margin: 0.5em">delete</i>
+						<i class="fa fa-edit" onclick="EditDetails(<?php echo $MTR_id ?>,<?php echo $idfood ?>);" style="font-size: 2.5em; margin: 0.5em"></i>
+						<i class="material-icons" onclick="DeleteDetails(<?php echo $MTR_id ?>,<?php echo $idfood ?>);" style="font-size: 2.5em; margin: 0.5em">delete</i>
 					</td>
 				</tr>
 				<?php
@@ -104,17 +108,37 @@ $foodName = getFoodName($idfood);
 			<div class="ui-widget">
 				<input class="inputAddDetails" type="text" name="inputAddDetails" placeholder="Nhập tên nguyên liệu ... ">
 			</div>
+			<label style="float:left; margin:1em 5em .5em .8em; font-size: 2em;">Nhập khối lượng nguyên liệu :</label>
+			<input type="number" class="inputAddDetailsQuan" name="inputAddDetailsQuan" placeholder="Nhập khối lượng ...">
 			<button class="btn btnSaveAddDetails">Lưu</button>
 			<button class="btn btnCancelAddDetails">Hủy</button>
 		</center>
 	</div>
 
 	<div class="Edit_details_form">
-		
+		<h1 style="text-align: center; font-size: 3em;">Thay Đổi Nguyên Liệu Cho Món Này</h1>
+		<br>
+		<center>
+			<label style="float:left; margin:1em 5em .5em .8em; font-size: 2em;">Nhập tên nguyên liệu :</label>
+			<div class="ui-widget">
+				<input class="inputEditDetails" type="text" name="inputEditDetails" placeholder="Nhập tên nguyên liệu ... ">
+			</div>
+			<label style="float:left; margin:1em 5em .5em .8em; font-size: 2em;">Nhập khối lượng nguyên liệu :</label>
+			<input type="number" class="inputEditDetailsQuan" name="inputEditDetailsQuan" placeholder="Nhập khối lượng ...">
+			<button class="btn btnSaveEditDetails">Lưu</button>
+			<button class="btn btnCancelEditDetails">Hủy</button>
+		</center>
 	</div>
 
 	<div class="Delete_details_form">
-		
+		<h1 style="text-align: center; font-size: 3em;">Loại Bỏ Nguyên Liệu</h1>
+		<br>
+		<h2 style="color: red">* Lưu ý : Đây là thao tác loại bỏ nguyên liệu khỏi món ăn này, không phải xóa dữ liệu của nguyên liệu này !</h2>
+		<center>
+			<label style="float:left; margin:1em 5em .5em .8em; font-size: 2em;">Xác nhận xóa nguyên liệu này :</label>
+			<button class="btn btnSaveDeleteDetails">Loại</button>
+			<button class="btn btnCancelDeleteDetails">Hủy</button>
+		</center>
 	</div>
 
 </body>

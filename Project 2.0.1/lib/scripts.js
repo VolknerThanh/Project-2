@@ -437,11 +437,103 @@ $(document).ready(function() {
     /* ============================================= */
     /* ===================Details=================== */
 
-    $('.btnAddFoodMTR').click(function() {
-    	$('.Add_details_form').show();
-    	$('.admin-details-list').hide(200);
+    $('.btnCancelAddDetails').click(function() {
+    	$('.admin-details-list').show();
+    	$('.Add_details_form').hide(500);
+    });
+    $('.btnCancelEditDetails').click(function() {
+    	$('.admin-details-list').show();
+    	$('.Edit_details_form').hide(500);
+    });
+    $('.btnCancelDeleteDetails').click(function() {
+    	$('.admin-details-list').show();
+    	$('.Delete_details_form').hide(500);
     });
 
+
+    $('.btnSaveAddDetails').click(function() {
+    	var MTRselected = $('.inputAddDetails').val().trim();
+    	var MTRQuantity = $('.inputAddDetailsQuan').val().trim();
+
+    	if (MTRselected == "" || MTRQuantity == "")
+    		alert("Hãy điền đầy đủ thông tin !");
+    	else{ 
+    		$.ajax({
+    			url: '../xuly.php',
+    			type: 'POST',
+    			data: {
+    				_thisName: MTRselected,
+    				_thisQuan: MTRQuantity,
+    				_thisFoodId: foodId
+    			},
+    		})
+    		.done(function(res) {
+    			if(res == "done"){
+    				alert("Đã lưu thông tin !");
+			    	$('.admin-details-list').show();
+			    	$('.Add_details_form').hide(500);
+			    	location.reload();
+    			}
+    			else if (res == "NOT EXIST") {
+    				alert("Nguyên liệu '" + MTRselected + "' không tồn tại trong cơ sở dữ liệu !")
+    			}
+    			else
+    				alert("Nguyên liệu '" + MTRselected + "' đã tồn tại trong món ăn này !");
+    		});
+    	}
+    });
+
+    $('.btnSaveEditDetails').click(function() {
+    	var thisName = $('.inputEditDetails').val().trim();
+    	var thisQuantity = $('.inputEditDetailsQuan').val().trim();
+
+    	if (thisName == "" || thisQuantity == "")
+    		alert("Hãy điền đầy đủ thông tin !");
+    	else{ 
+    		$.ajax({
+    			url: '../xuly.php',
+    			type: 'POST',
+    			data: {
+    				_EditName: thisName,
+    				_EditQuan: thisQuantity,
+    				_EditFoodId: foodId,
+    				_currentMTR_ID: mtr_id
+    			},
+    		})
+    		.done(function(res) {
+    			if(res == "done"){
+    				alert("Đã lưu thông tin !");
+			    	$('.admin-details-list').show();
+			    	$('.Edit_details_form').hide(500);
+			    	location.reload();
+    			}
+    			else if (res == "NOT EXIST") {
+    				alert("Nguyên liệu '" + thisName + "' không tồn tại trong cơ sở dữ liệu !")
+    			}
+    			else
+    				alert("Nguyên liệu '" + thisName + "' đã tồn tại trong món ăn này !");
+    		});
+    	}
+    });
+
+	$('.btnSaveDeleteDetails').click(function() {
+		$.ajax({
+			url: '../xuly.php',
+			type: 'POST',
+			data: {
+				DelId_MTR: mtr_id,
+				DelId_food: foodId
+			},
+		})
+		.done(function(res) {
+			if(res == "done") {
+				alert("Đã xóa nguyên liệu này khỏi món ăn");
+		    	$('.admin-details-list').show();
+		    	$('.Delete_details_form').hide(500);
+				location.reload();
+			}
+		});
+	});
 
 });
 
@@ -496,4 +588,21 @@ function Delete_food(ThisId){
 	$('.Delete_foods_form').show();
 	$('.admin-foods-list').hide(200);
 	foodId = ThisId;
+}
+function AddDetails(food_ID){
+	$('.Add_details_form').show();
+	$('.admin-details-list').hide(200);
+	foodId = food_ID;
+}
+function EditDetails(mtr_ID, food_ID){
+	$('.Edit_details_form').show();
+	$('.admin-details-list').hide(200);
+	mtr_id = mtr_ID;
+	foodId = food_ID;
+}
+function DeleteDetails(mtr_ID, food_ID){
+	$('.Delete_details_form').show();
+	$('.admin-details-list').hide(200);
+	mtr_id = mtr_ID;
+	foodId = food_ID;
 }

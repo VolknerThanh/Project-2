@@ -60,4 +60,28 @@ if( !empty($_POST['editContent']) && !empty($_POST['FoodID']) )
 	echo EditFoods($_POST['editContent'], $_POST['FoodID']);
 if(!empty($_POST['DelFoodID']))
 	DeleteFoods($_POST['DelFoodID']);
+
+if(!empty($_POST['_thisName']) && !empty($_POST['_thisQuan']) && !empty($_POST['_thisFoodId'])){
+	if(CheckExistedFromMaterialList($_POST['_thisName']))
+		echo "NOT EXIST";
+	else {
+		$_thisId = get_MTRid_by_name($_POST['_thisName']);
+		echo AddDetailsInFood($_thisId, $_POST['_thisFoodId'], $_POST['_thisQuan']);
+	}
+}
+
+if(!empty($_POST['_EditName']) && !empty($_POST['_EditQuan']) && !empty($_POST['_EditFoodId']) && !empty($_POST['_currentMTR_ID'])){
+	if(CheckExistedFromMaterialList($_POST['_EditName']))
+		echo "NOT EXIST";
+	else{
+		$_newId = get_MTRid_by_name($_POST['_EditName']);
+		echo EditDetailsInFood($_newId, $_POST['_currentMTR_ID'], $_POST['_EditFoodId'], $_POST['_EditQuan']);
+	}
+}
+
+if(!empty($_POST['DelId_MTR']) && !empty($_POST['DelId_food'])){
+	echo DeleteDetails($_POST['DelId_food'], $_POST['DelId_MTR']);
+}
+
+
 ?>
