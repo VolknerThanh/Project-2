@@ -426,4 +426,15 @@ function DeleteDetails($IDFOOD, $IDMTR){
 	return "done";
 }
 
+function IdOfSearchFoodName($foodName){
+	global $conn;
+	$query = "SELECT IdFood FROM Foods WHERE FoodName = ?";
+	$stmt = $conn->prepare($query);
+	$stmt->bind_param("s", $foodName);
+	$stmt->execute();
+	$result = $stmt->get_result();
+	
+	return $result->fetch_assoc()['IdFood'];
+}
+
 ?>
