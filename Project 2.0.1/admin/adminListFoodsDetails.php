@@ -60,6 +60,7 @@ $foodName = getFoodName($idfood);
 	<div class="menu-bar">
 		<div class="btn btn-signout">Đăng xuất</div>
 		<span class="user"><?php echo $_SESSION['username']; ?> </span>
+		<a href="index.php" title="trang chủ"><i class="fa fa-home" style="font-size:200%; color:white;"></i></a>
 	</div>
 
 	<div class="details-container">
@@ -139,6 +140,13 @@ $foodName = getFoodName($idfood);
 			<button class="btn btnSaveDeleteDetails">Loại</button>
 			<button class="btn btnCancelDeleteDetails">Hủy</button>
 		</center>
+	</div>
+
+	<div>
+		<!-- 
+			- link dan den slide hinh anh
+			- gui bang get ( idfood )
+		 -->
 	</div>
 
 </body>

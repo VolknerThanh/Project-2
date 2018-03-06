@@ -35,6 +35,7 @@ $_methodName = getMethodName($idmethod);
 	<div class="menu-bar">
 		<div class="btn btn-signout">Đăng xuất</div>
 		<span class="user"><?php echo $_SESSION['username']; ?> </span>
+		<a href="index.php" title="trang chủ"><i class="fa fa-home" style="font-size:200%; color:white;"></i></a>
 	</div>
 	
 	<div class="foods-container">
