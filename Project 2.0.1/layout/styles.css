@@ -7,7 +7,7 @@
 /* SAME PROPERTIES */
 .accounts-container, .login-container, .methods-container, .foods-container, .details-container{
 	border-radius: 10px;
-	border: 2px solid #1c417c;
+	/*border: 2px solid #1c417c;*/
 	text-align: center;
 	padding: 1em;
 	margin: 1em;
@@ -84,13 +84,13 @@ input, .inputAddName, .inputEditName, #input-quantity {
 	text-align: center;
 	outline: none;
 	border: 1px solid black;
-	border-radius: 20px;
+	border-radius: 10px;
 }
 .btn{
 	cursor: pointer;
 	outline: none;
 	border: none;
-	border-radius: 10px;
+	border-radius: 5px;
 	margin: 0.5em;
 	padding: 1em 2.2em;
 	background-color: red;
@@ -105,4 +105,17 @@ input, .inputAddName, .inputEditName, #input-quantity {
 }
 .btn-calc:active{
 	background-color: #ff453a;
+}
+.btnSearchDetails{
+	background-color: green;
+	padding: 1em 1.75em;
+	text-align: center;
+	width: 20%;
+}
+.btnShowOrHideOption{
+	color: blue;
+	background-color: transparent;
+	text-decoration: underline;
+	width: 100%;
+	text-align: center;
 }

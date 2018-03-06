@@ -31,7 +31,7 @@ $(document).ready(function() {
 				else{
 					//alert("Đăng nhập thành công !");
 
-					location.href = "admin.php";
+					location.href = "index.php";
 				}
 			});
 			
@@ -606,3 +606,4 @@ function DeleteDetails(mtr_ID, food_ID){
 	mtr_id = mtr_ID;
 	foodId = food_ID;
 }
+
