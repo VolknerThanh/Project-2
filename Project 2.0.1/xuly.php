@@ -83,5 +83,8 @@ if(!empty($_POST['DelId_MTR']) && !empty($_POST['DelId_food'])){
 	echo DeleteDetails($_POST['DelId_food'], $_POST['DelId_MTR']);
 }
 
+if(!empty($_POST['SearchFoodName'])){
+	echo IdOfSearchFoodName($_POST['SearchFoodName']);
+}
 
 ?>
