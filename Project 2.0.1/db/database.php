@@ -437,4 +437,14 @@ function IdOfSearchFoodName($foodName){
 	return $result->fetch_assoc()['IdFood'];
 }
 
+function loadStepByFoodId($foodId){
+	global $conn;
+	$array = array();
+	$res = $conn->query("SELECT * FROM imagesteplist WHERE idfood = $foodId");
+	while($arr = $res->fetch_assoc()){
+		$array[] = $arr;
+	}
+	return $array;
+}
+
 ?>
