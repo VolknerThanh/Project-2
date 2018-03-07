@@ -51,12 +51,14 @@
 			<?php
 				}
 			?>
-			
 		</div>
-
 		<?php
 			}
 		?>
+	</div>
+
+	<div style="text-align: center; font-size: 180%; color: blue;">
+		<a href="step.php?idfood=<?php echo $idfood; ?>" title="xem các bước làm">Xem các bước làm "<?php echo $name; ?>"</a>		
 	</div>
 
 	<script>
