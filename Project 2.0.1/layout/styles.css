@@ -5,7 +5,7 @@
 }
 
 /* SAME PROPERTIES */
-.accounts-container, .login-container, .methods-container, .foods-container, .details-container{
+.steps-container, .accounts-container, .login-container, .methods-container, .foods-container, .details-container{
 	border-radius: 10px;
 	/*border: 2px solid #1c417c;*/
 	text-align: center;

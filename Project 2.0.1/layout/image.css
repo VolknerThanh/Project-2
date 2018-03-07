@@ -1,0 +1,70 @@
+.slideShow{
+	
+}
+.image img{
+	width: 100%!important;
+}
+.image{
+	display: none;
+	animation-name: fade;
+	animation-duration: 1.5s;
+	-webkit-animation-name: fade;
+	-webkit-animation-duration: 1.5s;
+}
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+.prevImg, .nextImg{
+	cursor: pointer;
+	position: absolute;
+	top: 25%;
+	font-size: 40px;
+	padding: 20px;
+	outline: none;
+	display: inline-block;
+}
+.prevImg{
+	left: 0;
+}
+.nextImg{
+	right: 0;
+}
+.prevImg:hover, .nextImg:hover{
+	background-color: #bbb;
+	-webkit-transition: 0.7s ease;
+}
+.imageStep{
+	cursor: pointer;
+	border-radius: 50%;
+	height: 30px;
+	width: 30px;
+	background-color: #bbb;
+  	margin: 10px 2px;
+	display: inline-block;
+	text-align: center;
+	font-size: 25px;
+	font-family: serif;
+}
+.imageStep:hover{
+	background-color: #eee;
+}
+.imageDot-container{
+	text-align: center;
+	position: absolute;
+	bottom: 5%;
+	left: 10%;
+}
+.describe-container{
+	margin-top: 20px;
+}
+.describe{
+	display: none;
+	font-family: serif;
+	font-size: 150%;
+	font-weight: 500;
+}
