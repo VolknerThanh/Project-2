@@ -10,7 +10,15 @@ if( !isset($_SESSION['username']))
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Upload Hình Ảnh</title>
+	<link rel="stylesheet" href="../layout/styles.css">
 	<style type="text/css" media="screen">
+		.btn_back{
+			width: 15%;
+			text-align: center;
+			background-color: #6b7172;
+			text-transform: uppercase;
+			margin-top: 1em;
+		}
 		.noti{
 			margin: 0.5em;
 			padding: 1em;
@@ -21,10 +29,10 @@ if( !isset($_SESSION['username']))
 			border: 1px solid #565656;
 		}
 		.noti-success{
-			background-color: #20ad33;
+			background-color: #34a858;
 		}
 		.noti-fail{
-			background-color: #ff1e3c;
+			background-color: #a34646;
 		}
 	</style>
 </head>
@@ -40,41 +48,48 @@ $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 if(isset($_POST["submit"])) {
     $check = getimagesize($_FILES["uploadInput"]["tmp_name"]);
     if($check !== false) {
-        ?><div class="noti noti-success"><?php echo "File is an image - " . $check["mime"] . "."; ?></div><?php
+        ?><div class="noti noti-success"><?php echo "File là dạng ảnh - " . $check["mime"] . "."; ?></div><?php
         $uploadOk = 1;
     } else {
-        ?><div class="noti noti-fail"><?php echo "File is not an image."; ?></div><?php
+        ?><div class="noti noti-fail"><?php echo "File không là dạng ảnh"; ?></div><?php
         $uploadOk = 0;
     }
 }
 // Check if file already exists
 if (file_exists($target_file)) {
-    ?><div class="noti noti-fail"><?php echo "Sorry, file already exists."; ?></div><?php
+    ?><div class="noti noti-fail"><?php echo "File đã tồn tại !"; ?></div><?php
     $uploadOk = 0;
 }
 // Check file size
-if ($_FILES["uploadInput"]["size"] > 25000000) {
-    ?><div class="noti noti-fail"><?php echo "Sorry, your file is too large."; ?></div><?php
+if ($_FILES["uploadInput"]["size"] > 20000000) {
+    ?><div class="noti noti-fail"><?php echo "File vượt quá kích thước 20MB !"; ?></div><?php
     $uploadOk = 0;
 }
 // Allow certain file formats
 if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
 && $imageFileType != "gif" ) {
-    ?><div class="noti noti-fail"><?php echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed."; ?></div><?php
+    ?><div class="noti noti-fail"><?php echo "Chỉ cho phép các file JPG, JPEG, PNG & GIF !"; ?></div><?php
     $uploadOk = 0;
 }
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
-    ?><div class="noti noti-fail"><?php echo "Sorry, your file was not uploaded."; ?></div><?php
+    ?><div class="noti noti-fail"><?php echo "File không upload được !"; ?></div><?php
 // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["uploadInput"]["tmp_name"], $target_file)) {
-        ?><div class="noti noti-success"><?php  echo "The file ". basename( $_FILES["uploadInput"]["name"]). " has been uploaded.";?></div><?php
+        ?><div class="noti noti-success"><?php  echo "File [". basename( $_FILES["uploadInput"]["name"]). "] đã được upload !";?></div><?php
     } else {
-        ?><div class="noti noti-fail"><?php echo "Sorry, there was an error uploading your file."; ?></div><?php
+        ?><div class="noti noti-fail"><?php echo "Xảy ra lỗi khi upload file này !"; ?></div><?php
     }
 }
 ?>
+
+	
+<div style="display: flex; align-items: center; justify-content: center;">
+	<div class="btn btn_back" onclick="location.href = 'adminListImages.php'">
+		trở lại
+	</div>
+</div>
 
 </body>
 </html>
