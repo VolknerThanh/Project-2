@@ -2,6 +2,7 @@
 	margin: 0;
 	padding: 0;
 }
+
 .login-form, .signup-form{
 	position: relative;
 	left: 6em;
