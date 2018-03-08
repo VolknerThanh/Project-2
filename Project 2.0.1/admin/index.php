@@ -22,6 +22,7 @@ include("../db/database.php");
 	<title>Quản lý</title>
 	<link rel="stylesheet" href="../layout/main.css">
 	<link rel="stylesheet" href="../layout/styles.css">
+	<link rel="stylesheet" href="../layout/input.css">
 	<script src="../lib/jquery-3.2.1.min.js"></script>
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">

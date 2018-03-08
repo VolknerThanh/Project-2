@@ -21,6 +21,7 @@
 	<title>Phương thức</title>
 	<link rel="stylesheet" href="../layout/main.css">
 	<link rel="stylesheet" href="../layout/styles.css">
+	<link rel="stylesheet" href="../layout/input.css">
 	<script src="../lib/jquery-3.2.1.min.js"></script>
 	<script src="../lib/scripts.js"></script>
 	<!-- font -->
