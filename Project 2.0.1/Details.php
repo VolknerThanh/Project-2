@@ -19,6 +19,7 @@
 	<script src="lib/jquery-3.2.1.min.js"></script>
 	<script src="lib/scripts.js"></script>
 	<link rel="stylesheet" href="layout/styles.css">
+	<link rel="stylesheet" href="layout/input.css">
 </head>
 <body>
 	<div class="details-container">
