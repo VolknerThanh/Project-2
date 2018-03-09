@@ -23,7 +23,8 @@ header("Pragma: no-cache");
 	<link rel="stylesheet" href="../layout/styles.css">
 	<link rel="stylesheet" href="../layout/image.css">
 	<script src="../lib/jquery-3.2.1.min.js"></script>
-	<script src="../lib/scripts.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="../lib/scripts.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<!-- font -->
 	<link href="https://fonts.googleapis.com/css?family=Bungee+Hairline|Dhurjati|Grand+Hotel|Inconsolata|Italianno|Pacifico|Rochester" rel="stylesheet">
 	<!--
@@ -53,9 +54,7 @@ header("Pragma: no-cache");
 				<input type="submit" name="sbm_btn" class="sbm_btn" value="Upload">
 			</form>
 		</fieldset>
-			
 	</div>
-
 
 	
 </body>
