@@ -27,9 +27,20 @@ if(!empty($_GET['idfood'])){
 		<h1 class="container-title">Các bước làm <?php echo $foodname; ?></h1>
 		
 		<div class="slideShow">
+			<!-- step dots -->
+			<div class="imageDot-container">
+			<?php 
+				$imgSteps = loadStepByFoodId($foodid);
+				foreach ($imgSteps as $value) { ?>
+				<div class="imageStep" onclick="currentSlide(<?php echo $value['Step']; ?>)";>
+					<div><?php echo $value['Step']; ?></div>
+				</div>	
+				<?php }
+			?>
+			</div>
+			<br>
 			<!-- Slide Images -->
 			<?php
-				$imgSteps = loadStepByFoodId($foodid);
 				foreach ($imgSteps as $value) { ?>
 				<div class="image">
 					<img src="<?php echo $value["Link"]; ?>" alt="Bước <?php echo $value["Step"]; ?>">
@@ -46,16 +57,6 @@ if(!empty($_GET['idfood'])){
 				<div class="describe">
 					<span><?php echo $value['Summary']; ?></span>
 				</div>
-				<?php }
-			?>
-			</div>
-			<!-- step dots -->
-			<div class="imageDot-container">
-			<?php 
-				foreach ($imgSteps as $value) { ?>
-				<div class="imageStep" onclick="currentSlide(<?php echo $value['Step']; ?>)";>
-					<div><?php echo $value['Step']; ?></div>
-				</div>	
 				<?php }
 			?>
 			</div>
