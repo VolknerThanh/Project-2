@@ -88,9 +88,6 @@ include("../db/database.php");
 			<div class="box-items" onclick=" location.href='adminListMaterials.php' ">
 				Nguyên Liệu
 			</div>
-			<div class="box-items" onclick=" location.href='adminListImages.php' ">
-				Hình Ảnh
-			</div>
 		</div>
 	</div>
 

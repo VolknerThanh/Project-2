@@ -100,6 +100,12 @@ $foodName = getFoodName($idfood);
 				</tbody>
 			</table>
 		</div>
+		<br>
+		<br>
+		<div style="text-align: center; font-size: 180%">
+			<a href="adminListImages.php?idfood=<?php echo $idfood; ?>" style="color: blue;" title="xem các bước làm">Xem các bước làm "<?php echo $foodName; ?>"</a>		
+		</div>
+
 	</div>
 	
 	<div class="Add_details_form">
